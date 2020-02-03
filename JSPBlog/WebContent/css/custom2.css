@@ -1,0 +1,93 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@font-face { font-family: 'yg-jalnan'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff'); font-weight: normal; font-style: normal; }
+/* ÀüÃ¼ ¿µ¿ª ÁöÁ¤ */
+* {
+	font-family: 'Nanum Gothic';
+}
+/* ÀüÃ¼ ¸µÅ© ¿µ¿ª ÁöÁ¤ */
+a {
+    color: #000000;
+    text-decoration: none;
+}
+a:hover{
+    color: #bbbbbb;
+    text-decoration:none;
+    cursor: pointer;
+}
+
+/* ³×ºñ°ÔÀÌ¼Ç ¿µ¿ª */
+.navbar-default{    /* ¹è°æ »ö»ó*/
+    background-color: #2b2b37;
+    border-color: #2b2b37;
+}
+.navbar-default .navbar-brand{ /* ³»ºñ°ÔÀÌ¼Ç Á¦¸ñ */
+    color: #ffffff;
+    padding-top: 24px;
+    font-family: 'yg-jalnan';
+    font-size: 1.5em;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus{ /*³»ºñ°ÔÀÌ¼Ç Á¦¸ñ¿¡ ¸¶¿ì½º¸¦ ¿Ã·ÈÀ» ¶§ */
+    background-color: transparent;
+    color: #FE9A2E;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus{/* ÇöÀç ¼±ÅÃµÈ ³»ºñ°ÔÀÌ¼Ç »ö»ó ÀÌº¥Æ® */
+    color: #FE9A2E;
+    background-color: #000000;
+}
+.navbar-default .navbar-nav > li > a { /*³»ºñ°ÔÀÌ¼Ç ±âº» ±ÛÀÚ »ö»ó */
+	color: #ffffff;
+    font-family: 'Hanna';
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus { /*³»ºñ°ÔÀÌ¼ÇÀÇ ±ÛÀÚ¿¡ ¸¶¿ì½º¸¦ ¿Ã·ÈÀ» ¶§ */
+    color: #FE9A2E;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus{ /* .open : µå¶ø´Ù¿îÀÌ ¿­·ÈÀ» ¶§ ¸¶¿ì½º »ö»ó ÀÌº¥Æ®  */
+    color: #FE9A2E;
+    background-color: #000000;
+    text-decoration: none;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus { /* Åä±Û¿¡ ¸¶¿ì½º¸¦ ¿Ã·ÈÀ» ¶§ */
+	background-color: #dddddd;
+}
+.navbar-default .navbar-toggle: .icon-bar { /* Åä±Û ¾ÆÀÌÄÜ ¹Ù »ö»ó */
+	background-color: #dddddd;
+}
+
+/* ¹Ìµð¾î Äõ¸® */
+@media (max-width: 767px) { /* È­¸é ³Êºñ 767 ÀÌÇÏÀÏ¶§ Àû¿ë */
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #ffffff;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #eeeeee;
+    }
+}
+/* ³×ºñ°ÔÀÌ¼Ç ¹Ù ±æÀÌ ¼öÁ¤ */
+.navbar-fixed-top {
+	min-height: 70px;
+}
+.navbar-nav > li > a {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	line-height: 70px;
+}
+@media (max-width: 767px) { /* È­¸é ³Êºñ 767 ÀÌÇÏÀÏ¶§ Àû¿ë */
+	.navbar-default .navbar-brand {
+		padding-top: 20px;
+	}
+	.navbar-nav > li > a {
+		padding-top: 0px;
+		padding-bottom: 0px;
+		line-height: 40px;
+	}
+}
+
+
