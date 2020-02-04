@@ -18,6 +18,7 @@ public class downloadAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String fileName = request.getParameter("file"); // url의 parameter에서 file=? 부분 
+		//System.out.println('1' + fileName);
 		
 		//String directory = this.getServletContext().getRealPath("/upload/");
 		String directory = "C:/JSP/upload/";

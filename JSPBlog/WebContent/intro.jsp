@@ -415,7 +415,7 @@
         <div class="col-lg-4">
           <h4 class="text-uppercase mb-4">Email</h4>
           <p class="lead mb-0">angksflvlf52@gmail.com<br/>
-            <a href="http://startbootstrap.com">contact me</a>.</p>
+            <a href="mailto:angksflvlf52@gmail.com">contact me</a></p>
         </div>
 
       </div>

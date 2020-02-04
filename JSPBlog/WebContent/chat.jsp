@@ -16,7 +16,7 @@
 		if(userID == null) { /* chat.jsp는 로그인이 되었다는 가정하에 작동 */
 			session.setAttribute("messageType", "오류 메세지");
 			session.setAttribute("messageContent", "현재 로그인이 되어 있지 않습니다."); 
-			response.sendRedirect("index.jsp");	
+			response.sendRedirect("login.jsp");	
 			return;
 		}
 		if(toID == null) {

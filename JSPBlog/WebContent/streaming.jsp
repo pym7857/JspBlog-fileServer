@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <%@ page import="user.UserDAO" %>
 <%@ page import="user.UserDTO" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.io.File" %>
 <%@ page import="file.FileDAO" %>
 <%@ page import="file.FileDTO" %>
@@ -21,8 +20,7 @@
 
 	UserDAO userDAO = new UserDAO();
 	String userProfile = userDAO.getProfile(userID); // profile의 경로를 가져오는 메서드
-
-	ArrayList<FileDTO> fileList = new FileDAO().getList();
+	
 %>
 <head>
 	<meta charset="UTF-8">
@@ -30,21 +28,19 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/custom.css?ver=1">
 	<link rel="stylesheet" type="text/css" href="css/custom2.css?ver=1">
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css" />
-	<title>JSP Ajax 실시간 회원제 채팅 서비스</title>
+	<link href="https://vjs.zencdn.net/7.0.0/video-js.css" rel="stylesheet">
+	<script src="https://vjs.zencdn.net/7.0.0/video.min.js"></script>
+	<script src="https://unpkg.com/silvermine-videojs-quality-selector/dist/js/silvermine-videojs-quality-selector.min.js"></script>
+	<title>스트리밍</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.ui.position.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<style type="text/css">
-		.downloadtag {
-			cursor: pointer;
-			transition: color 0.3s ease 0s, text-shadow 0.3s ease 0s;
-		}
-		.downloadtag:hover {
-			color: black;
-			text-shadow: 2px 2px 8px #000000;
-		}
+	  .vjs-default-skin { color: #ffffff; font-size: 1.5rem;}
+	  .vjs-default-skin .vjs-play-progress,
+	  .vjs-default-skin .vjs-volume-level { background-color: #ff0000 }
+	  .vjs-default-skin .vjs-control-bar,
+	  .vjs-default-skin .vjs-big-play-button { background: rgba(0,0,0,0.43) }
+	  .vjs-default-skin .vjs-slider { background: rgba(0,0,0,0.14333333333333334) }
 	</style>
 	<script type="text/javascript">
 		/* 상단 내비게이션 메세지함 unread 라벨 표시 */
@@ -73,92 +69,81 @@
 			$('#unread').html(result);
 		}
 		
+		// 비디오 
+		var video;
+		
+		$('document').ready(function() {
+			FnObj.initVideoPlayer();
+			FnObj.bindVideoPlayerKeyEvent();
+		});
+		
 		var FnObj = {
-				convertToVolumeStr: function(fileVolume) {
-					var sizeStr;
-					var temp = fileVolume;
-					if (temp < 1024)
-						sizeStr = Math.round(temp*100)/100.0+' Byte';
-					else if ((temp /= 1024) < 1024)
-						sizeStr = Math.round(temp*100)/100.0+' KB';
-					else if ((temp /= 1024) < 1024)
-						sizeStr = Math.round(temp*100)/100.0+' MB';
-					else if ((temp /= 1024) < 1024)
-						sizeStr = Math.round(temp*100)/100.0+' GB';
-					else if ((temp /= 1024) < 1024)
-						sizeStr = Math.round(temp*100)/100.0+' TB';
-					else if ((temp /= 1024) < 1024)
-						sizeStr = Math.round(temp*100)/100.0+' PB';
-					return sizeStr;
+				// 비디오 초기화 설정
+				initVideoPlayer: function() {
+					var options = {
+							language: 'kr',
+							controls: true,
+							autoplay: true,
+							notSupportedMessage: '해당 영상을 재생할 수 없습니다. 자바스크립트 사용 옵션이 꺼져있거나 혹은 웹에서 지원하지 않는 영상 인코딩 포맷입니다.',
+							playbackRates: [0.25, 0.5, 0.75, 1, 1.5, 2],
+							//nativeControlsForTouch: true,
+							preload: 'auto',
+							fluid: true,
+							fill: true,
+							controlBar: {
+						        children: [
+						            "playToggle",
+						            "volumePanel",
+						            "currentTimeDisplay",
+						            "timeDivider",
+						            "durationDisplay",
+						            "progressControl",
+						            "remainingTimeDisplay",
+						            "QualitySelector",
+						            "PlaybackRateMenuButton",
+						            "subCapsButton",
+						            "audioTrackButton",
+						            "fullscreenToggle"
+						        ]
+						    }
+						};
+						video = videojs('streaming_video', options); // https://docs.videojs.com/tutorial-setup.html (Manual Setup 탭 참조)
 				},
-				changeFile: function(fileToUpload) {
-					var file = fileToUpload.files[0];
-					//console.log(file);
-					if (file) {
-						$('#fileVolume').text(FnObj.convertToVolumeStr(file.size));
+				// 비디오 키보드 이벤트 처리
+				bindVideoPlayerKeyEvent: function() {
+					window.onkeydown = function(event) {
+						//화살표 왼쪽
+						if (event.keyCode == 37)
+							video.currentTime(video.currentTime()-5);
+						//화살표 오른쪽
+						else if (event.keyCode == 39)
+							video.currentTime(video.currentTime()+5);
+						//화살표 위쪽
+						else if (event.keyCode == 38)
+							video.volume(video.volume()+0.1);
+						//화살표 아래쪽
+						else if (event.keyCode == 40)
+							video.volume(video.volume()-0.1);
+						//스페이스바
+						else if (event.keyCode == 32) {
+							if (video.paused())
+								video.play();
+							else
+								video.pause();
+						}
+					    //엔터키
+						else if (event.keyCode == 13) {
+							if (video.isFullscreen())
+								video.exitFullscreen();
+							else
+								video.requestFullscreen();
+						}
+						//ESC키
+						else if (event.keyCode == 27)
+							if (video.isFullscreen())
+								video.exitFullscreen();
 					}
 				}
-		}
-		
-		function load(fileToUpload) {
-			dataType : null;
-			downLink : null;
-			fileName : null;
-			StreamingLink : null;
-		
-			this.fileName = fileToUpload;
-			var dlink = 'localhost:8084<%= request.getContextPath() %>/downloadAction?file=';
-			dlink += fileName
-			this.downLink = dlink;
-			//console.log(fileName);
-			var contextMenuItems = {}
-			contextMenuItems.download = {
-            	name: "다운로드", 
-            	icon: "copy",
-            	callback: function(key, opt) {
-            		//location.href = downLink;
-            		//location.replace(downLink);
-            		//window.location.href = downLink;
-            		window.open(downLink); // this.downLink라고 하면 에러 ! 
-            	}
-            };
-       		var tempType = fileName.split('.')[1];
-       		this.dataType = tempType;
-       		//console.log(dataType);
-       		var slink = 'streaming.jsp?file=';
-       		slink += fileName
-       		this.StreamingLink = slink;
-       		console.log(StreamingLink)
-   			contextMenuItems.webStreaming = {
-               	name: "웹 스트리밍", 
-               	icon: "copy",
-               	callback: function(key, opt) {
-               		if (dataType == 'mp4') {
-               			location.href = StreamingLink;
-               		}
-               		else {
-               			alert('비디오 형식이 아닙니다!');
-               		}
-               	}
-   	        };
-			contextMenuItems.del = {
-            	name: "삭제", 
-            	icon: "delete"
-	        };
-			contextMenuItems.quit = {
-               	name: "닫기", 
-               	icon: function(){
-               	    return 'context-menu-icon context-menu-icon-quit';
-               	},
-               	callback: function(key, opt) {}
-            };
-			
-			$.contextMenu({
-				selector: '.downloadtag',
-	            trigger: 'left', // left mouse button
-				animation: {duration: 200, show: 'slideDown', hide: 'slideUp'},
-	            items: contextMenuItems
-			});
 		}
 	</script>
 </head>
@@ -220,62 +205,21 @@
 		</div>
 	</nav>
 	
-	<form action="./uploadAction" method="post" enctype="multipart/form-data">
-		<div class="container">
-			<table class="table" style="margin-bottom: 10px;">
-				<tr>
-					<td class="col-xs-1">파일 업로드</td>
-					<td colspan="2">
-						<input type="file" name="file" onchange="FnObj.changeFile(this);">
-					</td>
-					<td class="col-xs-1">용량</td>
-					<td class="col-xs-1">
-						<span id="fileVolume"></span>
-					</td>
-					<td class="col-xs-1">
-						<input type="submit" name="file" value="업로드" class="btn btn-success btn-xs" style="float:left;" 
-						data-toggle="tooltip" data-placement="bottom" title="파일을 업로드 합니다.">
-					</td>
-				</tr>
-			</table>
-		</div>
-	</form>
+	<%
+		String tempName = request.getParameter("file"); // url의 parameter에서 fileName=? 부분 
+		//System.out.println('2' + tempName);
+		String streamFileName = tempName;
+	%>
 	
-	<div class="container">
-		<table class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
-			<thead>
-				<tr>
-					<th colspan="6"><h4>파일 토렌트</h4></th>
-				</tr>
-				<tr>
-					<th style="font-weight: bold; background-color: #fafafa; color: #000000; width: 70px;"><h5>유형</h5></th> 
-					<th style="background-color: #fafafa; color: #000000;"><h5>파일 이름</h5></th> 
-					<th style="background-color: #fafafa; color: #000000;"><h5>용량</h5></th>
-					<th style="background-color: #fafafa; color: #000000;"><h5>업로더</h5></th> 
-					<th style="background-color: #fafafa; color: #000000; width: 100px;"><h5>업로드 날짜</h5></th> 
-					<th style="background-color: #fafafa; color: #000000; width: 120px;"><h5>다운로드 횟수</h5></th> 
-				</tr>
-			</thead>
-			<tbody>
-			<%
-				for(FileDTO file : fileList) {
-			%>
-				<tr>
-					<td style="text-align:center; vertical-align: middle;"><%= file.getFileType() %></td>
-					<td style="text-align: left; vertical-align: middle;"><a class="downloadtag" onclick="load(this.title);"
-					title=<%= java.net.URLEncoder.encode(file.getFileRealName(), "UTF-8")%>><%= file.getFileName() %></a></td>
-					<td style="text-align:center; vertical-align: middle;"><%= file.getFileSize() %></td>
-					<td style="text-align:center; vertical-align: middle;"><%= userID %></td>
-					<td style="text-align:center; vertical-align: middle;"><%= file.getFileDate() %></td>
-					<td style="text-align:center; vertical-align: middle;"><%= file.getDownloadCount() %></td>
-				</tr>
-			<%
-				}
-			%>
-			</tbody>
-		</table>
+	<!-- 비디오 플레이어 -->
+	<div class="container" style="padding-top: 90px;">
+		<video id="streaming_video" class="video-js vjs-default-skin">
+			<source src="http://localhost:8084/JSPBlog/downloadAction?file=<%= streamFileName %>" type="video/mp4" label="원본">
+		</video>
 	</div>
+	<div style="text-align: center; margin-top: 10px; font-size: 2rem; color: #bbb;">Powered by <a href="http://www2.videojs.com/" title="http://www2.videojs.com/">Video.js</a></div>
 	
+	<!-- 메세지 모달 -->
 	<%
 		/*
 			UserRegisterServlet.java, UserLoginServlet에서 session.setAttribute로 정의한 

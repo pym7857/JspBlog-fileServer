@@ -24,15 +24,17 @@ public class FileDAO {
 		}
 	}
 	
-	public int upload(String fileName, String fileRealName) {
+	public int upload(String fileName, String fileRealName, String fileType, String fileSize) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String SQL = "INSERT INTO FILE VALUES (?, ?, 0, now())";
+		String SQL = "INSERT INTO FILE VALUES (?, ?, 0, now(), ?, ?)";
 		try {
 			conn = dataSource.getConnection(); 
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, fileName);
 			pstmt.setString(2, fileRealName);
+			pstmt.setString(3, fileType);
+			pstmt.setString(4, fileSize);
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -70,7 +72,7 @@ public class FileDAO {
 			pstmt = conn.prepareStatement(SQL);
 			rs = pstmt.executeQuery(); // 쿼리문의 결과가 rs에 담긴다 
 			while(rs.next()) {
-				FileDTO file = new FileDTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4));
+				FileDTO file = new FileDTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6));
 				list.add(file);
 			}
 		} catch (Exception e){

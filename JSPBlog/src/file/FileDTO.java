@@ -6,6 +6,8 @@ public class FileDTO {
 	String fileRealName;
 	int downloadCount;
 	String fileDate;
+	String fileType;
+	String fileSize;
 	
 	public String getFileName() {
 		return fileName;
@@ -31,11 +33,25 @@ public class FileDTO {
 	public void setFileDate(String fileDate) {
 		this.fileDate = fileDate;
 	}
-	public FileDTO(String fileName, String fileRealName, int downloadCount, String fileDate) {
+	public String getFileType() {
+		return fileType;
+	}
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
+	}
+	public String getFileSize() {
+		return fileSize;
+	}
+	public void setFileSize(String fileSize) {
+		this.fileSize = fileSize;
+	}
+	public FileDTO(String fileName, String fileRealName, int downloadCount, String fileDate, String fileType, String fileSize) {
 		super();
 		this.fileName = fileName;
 		this.fileRealName = fileRealName;
 		this.downloadCount = downloadCount;
 		this.fileDate = fileDate;
+		this.fileType = fileType;
+		this.fileSize = fileSize;
 	}
 }

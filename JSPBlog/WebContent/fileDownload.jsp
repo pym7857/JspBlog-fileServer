@@ -11,7 +11,12 @@
 	if(session.getAttribute("userID") != null){
 		userID = (String) session.getAttribute("userID");
 	}
-
+	if(userID == null) { 
+		session.setAttribute("messageType", "오류 메세지");
+		session.setAttribute("messageContent", "현재 로그인이 되어 있지 않습니다."); 
+		response.sendRedirect("login.jsp");	
+		return;
+	}
 	UserDAO userDAO = new UserDAO();
 	String userProfile = userDAO.getProfile(userID); // profile의 경로를 가져오는 메서드
 

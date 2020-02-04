@@ -25,11 +25,34 @@ public class uploadActionServlet extends HttpServlet {
 		
 		String fileName = multipartRequest.getOriginalFileName("file"); // fileShare.jsp에서 input name="file"이었음
 		String fileRealName = multipartRequest.getFilesystemName("file"); 
+		String fileType = multipartRequest.getContentType("file");
+		// 파일 사이즈 
+		File f = multipartRequest.getFile("file");
+		long temp = f.length();
+		String d = null;
+		String fileSize = null;
+		if (temp < 1024) {
+			d = Double.toString(Math.round(temp*100)/100.0);
+			fileSize = d + " Byte";
+		}
+		else if ((temp /= 1024) < 1024) {
+			d = Double.toString(Math.round(temp*100)/100.0);
+			fileSize = d + " KB";
+		}
+		else if ((temp /= 1024) < 1024) {
+			d = Double.toString(Math.round(temp*100)/100.0);
+			fileSize = d + " MB";
+		}
+		else if ((temp /= 1024) < 1024) {
+			d = Double.toString(Math.round(temp*100)/100.0);
+			fileSize = d + " GB";
+		}
 		
 		// 확장자 예외처리 
 		if (fileName.endsWith(".doc") || fileName.endsWith(".hwp") || fileName.endsWith(".pdf") || fileName.endsWith(".xls") ||
-				fileName.endsWith(".jpg") || fileName.endsWith(".png") || fileName.endsWith(".jpeg") || fileName.endsWith(".gif")) {
-			new FileDAO().upload(fileName, fileRealName);
+				fileName.endsWith(".jpg") || fileName.endsWith(".png") || fileName.endsWith(".jpeg") || fileName.endsWith(".gif") ||
+				fileName.endsWith(".mp3") || fileName.endsWith(".mp4") || fileName.endsWith(".avi")) {
+			new FileDAO().upload(fileName, fileRealName, fileType, fileSize);
 			request.getSession().setAttribute("messageType", "성공 메세지");
 			request.getSession().setAttribute("messageContent", "성공적으로 파일이 업로드 되었습니다.");
 			response.sendRedirect("fileShare.jsp");
