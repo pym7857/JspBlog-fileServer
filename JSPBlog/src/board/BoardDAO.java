@@ -54,7 +54,7 @@ public class BoardDAO {
 	public int commentWrite(String boardID, String content, String userID) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String SQL = "INSERT INTO COMMENT SELECT 0, ?, ?, now(), ?";
+		String SQL = "INSERT INTO COMMENT SELECT IFNULL((SELECT MAX(commentID) + 1 FROM COMMENT), 1), ?, ?, now(), ?";
 		try {
 			conn = dataSource.getConnection(); // 실질적으로 커넥션풀에 접근하게 해줌 
 			pstmt = conn.prepareStatement(SQL);

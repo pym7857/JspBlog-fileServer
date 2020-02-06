@@ -8,6 +8,7 @@ public class FileDTO {
 	String fileDate;
 	String fileType;
 	String fileSize;
+	String uploadUserID;
 	
 	public String getFileName() {
 		return fileName;
@@ -45,7 +46,13 @@ public class FileDTO {
 	public void setFileSize(String fileSize) {
 		this.fileSize = fileSize;
 	}
-	public FileDTO(String fileName, String fileRealName, int downloadCount, String fileDate, String fileType, String fileSize) {
+	public String getUploadUserID() {
+		return uploadUserID;
+	}
+	public void setUploadUserID(String uploadUserID) {
+		this.uploadUserID = uploadUserID;
+	}
+	public FileDTO(String fileName, String fileRealName, int downloadCount, String fileDate, String fileType, String fileSize, String uploadUserID) {
 		super();
 		this.fileName = fileName;
 		this.fileRealName = fileRealName;
@@ -53,5 +60,6 @@ public class FileDTO {
 		this.fileDate = fileDate;
 		this.fileType = fileType;
 		this.fileSize = fileSize;
+		this.uploadUserID = uploadUserID;
 	}
 }

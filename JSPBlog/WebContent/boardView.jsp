@@ -152,12 +152,13 @@
 			<%
 				}
 			%>
+				<!-- 페이지 처리 부분 -->
 				<tr>
 					<td colspan="5">
 						<a href="boardWrite.jsp" class="btn btn-primary pull-right" type="submit">글쓰기</a>
 						<ul class="pagination" style="margin: 0 auto;"> <!-- 부트스트랩 : 페이지네이션 <ul> 태그로 제공 -->
 					<%
-						int startPage = (Integer.parseInt(pageNumber) / 3) * 3 + 1; // 1,2,3페이지 까지는 startPage = 1, 4 페이지 부터는 startPage = 4
+						int startPage = (Integer.parseInt(pageNumber) / 3) * 3 + 1; // ex.. 1,2,3페이지 까지는 startPage = 1, 4 페이지 부터는 startPage = 4
 						if(Integer.parseInt(pageNumber) % 3 == 0) startPage -= 3;
 						int targetPage = new BoardDAO().targetPage(pageNumber); // targetPage 개수 (현재 페이지 포함, 앞으로 처리할 페이지 개수)
 						

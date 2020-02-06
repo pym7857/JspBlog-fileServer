@@ -220,7 +220,7 @@
 		<%
 				if(userID != null && userID.equals(comment.getUserID())) { // 댓글 작성자 본인에 한해서만 보여지도록 
 		%>
-				<a href="boardCommentDelete?commentID=<%= comment.getCommentID() %>" class="btn btn-primary pull-right" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
+				<a href="boardCommentDelete?commentID=<%= comment.getCommentID() %>" class="btn btn-primary pull-right" onclick="return confirm('정말로 삭제하시겠습니까?')">댓글 삭제</a>
 		<%
 				} 
 		%>

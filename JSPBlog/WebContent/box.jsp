@@ -84,7 +84,7 @@
 					'<td style="width: 150px;">' +
 					'<img class="media-object img-circle" style="margin: 0 auto; max-width: 40px; max-height: 40px;" src="' + profile + '"></img>' +
 					'<h5>' + lastID + '</h5></td>' +
-					'<td>' +
+					'<td style="text-align:center; vertical-align: middle;">' +
 					'<h5>' + chatContent + 
 					'&nbsp' +
 					'<span class="label label-info">' + unread + '</span></h5>' +

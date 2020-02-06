@@ -101,16 +101,19 @@
 		}
 		
 		function load(fileToUpload) {
-			dataType : null;
+			dataType : null; // callback함수내에서도 사용할 수 있도록 여기에 정의 
 			downLink : null;
 			fileName : null;
 			StreamingLink : null;
+			uid : null;
+			uploader : null;
+			deleteUrl : null;
 		
-			this.fileName = fileToUpload;
-			var dlink = 'localhost:8084<%= request.getContextPath() %>/downloadAction?file=';
+			this.fileName = fileToUpload.split('.')[0] + "." + fileToUpload.split('.')[1];
+			var dlink = 'downloadAction?file=';
 			dlink += fileName
 			this.downLink = dlink;
-			//console.log(fileName);
+			console.log(fileName);
 			var contextMenuItems = {}
 			contextMenuItems.download = {
             	name: "다운로드", 
@@ -122,13 +125,13 @@
             		window.open(downLink); // this.downLink라고 하면 에러 ! 
             	}
             };
-       		var tempType = fileName.split('.')[1];
+       		var tempType = fileToUpload.split('.')[1]; // 문제점 : 제목에 .이 들어가면 안됨 (하지만, 보통 파일 이름에 .이 들어가지는 않는다)
        		this.dataType = tempType;
        		//console.log(dataType);
        		var slink = 'streaming.jsp?file=';
        		slink += fileName
        		this.StreamingLink = slink;
-       		console.log(StreamingLink)
+       		//console.log(StreamingLink)
    			contextMenuItems.webStreaming = {
                	name: "웹 스트리밍", 
                	icon: "copy",
@@ -141,9 +144,27 @@
                		}
                	}
    	        };
+       		this.uid = '<%= userID %>'
+       		this.uploader = fileToUpload.split('.')[2]; // 업로더
+       		var del = 'deleteThisFile?file=';
+       		del += fileName;
+       		this.deleteUrl = del;
 			contextMenuItems.del = {
             	name: "삭제", 
-            	icon: "delete"
+            	icon: "delete",
+            	callback: function(key, opt) {
+	            	if (uid != uploader) {
+	            		alert('본인 이외에는 삭제할 수 없습니다.');
+	            		console.log(uid, uploader);
+	            		return;
+	            	} else {
+	            		console.log(uid, uploader);
+	            		if (confirm('정말로 삭제하시겠습니까? 삭제된 자료는 되돌릴 수 없습니다.')) {
+	            			console.log('hi');
+	            			location.href = deleteUrl;
+	            		}
+	            	}
+            	}
 	        };
 			contextMenuItems.quit = {
                	name: "닫기", 
@@ -261,9 +282,17 @@
 				for(FileDTO file : fileList) {
 			%>
 				<tr>
-					<td style="text-align:center; vertical-align: middle;"><%= file.getFileType() %></td>
+					<%
+						String tempType = file.getFileType();
+						String lastType = tempType.split("/")[1]; 
+						if (lastType.equals("vnd.openxmlformats-officedocument.wordprocessingml.document"))
+							lastType = "word";
+						if (lastType.equals("haansofthwp"))
+							lastType = "hwp";
+					%>
+					<td style="text-align:center; vertical-align: middle;"><%= lastType %></td>
 					<td style="text-align: left; vertical-align: middle;"><a class="downloadtag" onclick="load(this.title);"
-					title=<%= java.net.URLEncoder.encode(file.getFileRealName(), "UTF-8")%>><%= file.getFileName() %></a></td>
+					title="<%= java.net.URLEncoder.encode(file.getFileRealName(), "UTF-8")%>.<%= file.getUploadUserID() %>"><%= file.getFileName() %></a></td>
 					<td style="text-align:center; vertical-align: middle;"><%= file.getFileSize() %></td>
 					<td style="text-align:center; vertical-align: middle;"><%= userID %></td>
 					<td style="text-align:center; vertical-align: middle;"><%= file.getFileDate() %></td>

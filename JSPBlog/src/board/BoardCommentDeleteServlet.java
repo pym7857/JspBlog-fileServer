@@ -31,6 +31,7 @@ public class BoardCommentDeleteServlet extends HttpServlet {
 		//System.out.println(userID + " " + comment.getUserID() + " " + commentID);
 		
 		if(!userID.equals(comment.getUserID())) {
+			System.out.println(userID +","+comment.getUserID());
 			session.setAttribute("messageType", "오류 메세지");
 			session.setAttribute("messageContent", "userID 오류");
 			response.sendRedirect("index.jsp");
@@ -46,9 +47,10 @@ public class BoardCommentDeleteServlet extends HttpServlet {
 			return;
 		}
 		else {
+			String toUrl = "boardShow.jsp?boardID=" + comment.getBoardID();
 			request.getSession().setAttribute("messageType", "성공 메세지");
 			request.getSession().setAttribute("messageContent", "삭제에 성공했습니다.");
-			response.sendRedirect("boardView.jsp");
+			response.sendRedirect(toUrl);
 		}
 	}
 

@@ -48,11 +48,14 @@ public class uploadActionServlet extends HttpServlet {
 			fileSize = d + " GB";
 		}
 		
+		HttpSession session = request.getSession();
+		String userID = (String) session.getAttribute("userID");
+		
 		// 확장자 예외처리 
 		if (fileName.endsWith(".doc") || fileName.endsWith(".hwp") || fileName.endsWith(".pdf") || fileName.endsWith(".xls") ||
 				fileName.endsWith(".jpg") || fileName.endsWith(".png") || fileName.endsWith(".jpeg") || fileName.endsWith(".gif") ||
-				fileName.endsWith(".mp3") || fileName.endsWith(".mp4") || fileName.endsWith(".avi")) {
-			new FileDAO().upload(fileName, fileRealName, fileType, fileSize);
+				fileName.endsWith(".mp3") || fileName.endsWith(".mp4") || fileName.endsWith(".avi") || fileName.endsWith(".docx")) {
+			new FileDAO().upload(fileName, fileRealName, fileType, fileSize, userID);
 			request.getSession().setAttribute("messageType", "성공 메세지");
 			request.getSession().setAttribute("messageContent", "성공적으로 파일이 업로드 되었습니다.");
 			response.sendRedirect("fileShare.jsp");
