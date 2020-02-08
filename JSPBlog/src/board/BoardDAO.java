@@ -301,7 +301,7 @@ public class BoardDAO {
 				CommentDTO comment = new CommentDTO();
 				comment.setCommentID(rs.getInt("commentID"));
 				comment.setBoardID(rs.getInt("BoardID"));
-				comment.setContent(rs.getString("content"));
+				comment.setContent(rs.getString("content").replaceAll(" ", "&nbsp").replaceAll("<", "&lt").replaceAll(">", "&gt").replaceAll("\n", "<br>"));
 				comment.setContentDate(rs.getString("contentDate").substring(0, 19));
 				comment.setUserID(rs.getString("userID"));
 				commentList.add(comment);

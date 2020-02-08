@@ -138,4 +138,16 @@
     <servlet-name>uploadActionServlet</servlet-name>
     <url-pattern>/uploadAction</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>FileFindServlet</servlet-name>
+    <servlet-class>file.FileFindServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FileFindServlet</servlet-name>
+    <url-pattern>/FileFindServlet</url-pattern>
+  </servlet-mapping>
+  <error-page>
+	<error-code>404</error-code>
+	<location>/404errorPage.jsp</location>
+  </error-page>
 </web-app>

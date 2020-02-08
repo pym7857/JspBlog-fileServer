@@ -23,9 +23,18 @@ public class uploadActionServlet extends HttpServlet {
 		// 파일 업로드 객체 생성
 		MultipartRequest multipartRequest = new MultipartRequest(request, directory, maxSize, encoding, new DefaultFileRenamePolicy());
 		
-		String fileName = multipartRequest.getOriginalFileName("file"); // fileShare.jsp에서 input name="file"이었음
+		String fileName = null;
+		if (multipartRequest.getOriginalFileName("file") != null)
+			fileName = multipartRequest.getOriginalFileName("file");
+		else { // 예외 처리
+			request.getSession().setAttribute("messageType", "오류 메세지");
+			request.getSession().setAttribute("messageContent", "먼저 파일을 선택해주세요!");
+			response.sendRedirect("fileShare.jsp");
+			return;
+		}
 		String fileRealName = multipartRequest.getFilesystemName("file"); 
 		String fileType = multipartRequest.getContentType("file");
+		
 		// 파일 사이즈 
 		File f = multipartRequest.getFile("file");
 		long temp = f.length();

@@ -38,13 +38,13 @@ public class UserFindServlet extends HttpServlet {
 			response.getWriter().write("-1");
 		}
 	}
-	
 	// JSON 형식으로 보내는 data 
 	public String find(String userID) throws Exception {
 		JSONObject obj = new JSONObject();
 		obj.put("userProfile", new UserDAO().getProfile(userID));
 		return obj.toJSONString();
 	}
+	
 	/*
 	public String find(String userID) throws Exception {
 		StringBuffer result = new StringBuffer("");

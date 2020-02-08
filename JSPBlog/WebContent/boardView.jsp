@@ -35,7 +35,7 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/custom.css?versionewg=2">
 	<link rel="stylesheet" type="text/css" href="css/custom2.css?versiontff=2">
-	<title>JSP Ajax 실시간 회원제 채팅 서비스</title>
+	<title>OKKY</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script type="text/javascript">
@@ -76,7 +76,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp">실시간 채팅 서비스</a>
+			<a class="navbar-brand" href="index.jsp">조유리 사생팬 블로그</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -127,12 +127,13 @@
 		<table class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
 			<thead>
 				<tr>
-					<th colspan="5"><h4>자유게시판</h4></th>
+					<th colspan="6"><h4>자유게시판</h4></th>
 				</tr>
 				<tr>
 					<th style="font-weight: bold; background-color: #fafafa; color: #000000; width: 70px;"><h5>번호</h5></th> 
 					<th style="background-color: #fafafa; color: #000000;"><h5>제목</h5></th> 
 					<th style="background-color: #fafafa; color: #000000;"><h5>작성자</h5></th> 
+					<th style="background-color: #fafafa; color: #000000;"><h5>추천</h5></th> 
 					<th style="background-color: #fafafa; color: #000000; width: 100px;"><h5>작성날짜</h5></th> 
 					<th style="background-color: #fafafa; color: #000000; width: 70px;"><h5>조회수</h5></th> 
 				</tr>
@@ -146,6 +147,7 @@
 					<td><%= board.getBoardID() %></td>
 					<td style="text-align: left;"><a href="boardShow.jsp?boardID=<%= board.getBoardID() %>"><%= board.getBoardTitle() %></a></td>
 					<td><%= board.getUserID() %></td>
+					<td><%= board.getBoardLike() %></td>
 					<td><%= board.getBoardDate() %></td>
 					<td><%= board.getBoardHit() %></td>
 				</tr>
@@ -154,7 +156,7 @@
 			%>
 				<!-- 페이지 처리 부분 -->
 				<tr>
-					<td colspan="5">
+					<td colspan="6">
 						<a href="boardWrite.jsp" class="btn btn-primary pull-right" type="submit">글쓰기</a>
 						<ul class="pagination" style="margin: 0 auto;"> <!-- 부트스트랩 : 페이지네이션 <ul> 태그로 제공 -->
 					<%

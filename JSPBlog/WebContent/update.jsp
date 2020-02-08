@@ -25,7 +25,7 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/custom.css">
 	<link rel="stylesheet" type="text/css" href="css/custom2.css">
-	<title>JSP Ajax 실시간 회원제 채팅 서비스</title>
+	<title>OKKY</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script type="text/javascript">
@@ -76,7 +76,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp">실시간 채팅 서비스</a>
+			<a class="navbar-brand" href="index.jsp">조유리 사생팬 블로그</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">

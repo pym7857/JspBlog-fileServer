@@ -22,7 +22,7 @@ h1 {
 	font-family: 'Hanna';
 }
 
-/* Å×ÀÌºí °ü·Ã µðÀÚÀÎ Ã³¸® */
+/* 테이블 관련 디자인 처리 */
 thead th {
 	background-color: #2d1f1f;
 	color: white;
@@ -39,7 +39,7 @@ tr th:last-child {
 	border-bottom-right-radius: 6px;
 }
 
-/* ¸ð´Þ ÆË¾÷Ã¢ °ü·Ã µðÀÚÀÎ Ã³¸® */
+/* 모달 팝업창 관련 디자인 처리 */
 .vertical-alignment-helper {
 	display: table;
 	height: 100%;
@@ -58,7 +58,7 @@ tr th:last-child {
 	pointer-events: all;
 }
 
-/* Ã¤ÆÃÃ¢ µðÀÚÀÎ Ã³¸® */
+/* 채팅창 디자인 처리 */
 .portlet {
     margin-bottom: 15px;
 }

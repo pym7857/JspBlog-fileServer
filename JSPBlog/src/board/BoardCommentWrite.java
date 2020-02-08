@@ -17,7 +17,6 @@ public class BoardCommentWrite extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		
 		String boardID = request.getParameter("boardID");
 		if(boardID == null || boardID.equals("")) {
 			session.setAttribute("messageType", "오류 메세지");

@@ -31,7 +31,7 @@
 	<link rel="stylesheet" type="text/css" href="css/custom.css?ver=1">
 	<link rel="stylesheet" type="text/css" href="css/custom2.css?ver=1">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css" />
-	<title>JSP Ajax 실시간 회원제 채팅 서비스</title>
+	<title>OKKY</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.ui.position.js"></script>
@@ -44,6 +44,11 @@
 		.downloadtag:hover {
 			color: black;
 			text-shadow: 2px 2px 8px #000000;
+		}
+		#keyword {
+			width: 800px;
+			height: 30px;
+			vertical-align: middle;
 		}
 	</style>
 	<script type="text/javascript">
@@ -193,7 +198,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp">실시간 채팅 서비스</a>
+			<a class="navbar-brand" href="index.jsp">조유리 사생팬 블로그</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -241,32 +246,46 @@
 		</div>
 	</nav>
 	
+	<!-- 파일 토렌트 -->
 	<form action="./uploadAction" method="post" enctype="multipart/form-data">
 		<div class="container">
-			<table class="table" style="margin-bottom: 10px;">
+			<table class="table table-bordered table-hover" style="text-align: center; margin-bottom: 10px; border: 1px solid black;">
+				<thead>
+					<tr>
+						<th colspan="6"><h4>파일 토렌트</h4></th>
+					</tr>
+				</thead>
+				<tbody>
+				<!-- 파일 검색 -->
 				<tr>
-					<td class="col-xs-1">파일 업로드</td>
-					<td colspan="2">
-						<input type="file" name="file" onchange="FnObj.changeFile(this);">
+					<td style="width: 110px;"><h5>파일 검색</h5></td>
+					<td colspan="5"><input type="text" id="keyword" maxlength="20" placeholder=" 찾을 파일의 이름을 입력하세요." 
+					data-toggle="tooltip" data-placement="bottom" title="짧은 키워드로 파일을 검색할 수 있습니다."></td>
+				</tr>
+				<!-- 파일 업로드 -->
+				<tr>
+					<td style="font-weight:bold; width: 110px;"><h5>파일 업로드</h5></td>
+					<td style="vertical-align: middle;" colspan="2">
+						<input type="file" name="file" onchange="FnObj.changeFile(this);" data-toggle="tooltip" data-placement="top" title="파일을 선택해 주세요.">
 					</td>
-					<td class="col-xs-1">용량</td>
-					<td class="col-xs-1">
-						<span id="fileVolume"></span>
-					</td>
-					<td class="col-xs-1">
-						<input type="submit" name="file" value="업로드" class="btn btn-success btn-xs" style="float:left;" 
-						data-toggle="tooltip" data-placement="bottom" title="파일을 업로드 합니다.">
+					<td style="font-weight:bold; width: 110px; vertical-align: middle;">용량</td>
+					<td style="font-weight:bold; width: 110px; vertical-align: middle;"><span id="fileVolume"></span></td>
+					<td style="font-weight:bold; width: 110px; vertical-align: middle;">
+						<input type="submit" name="file" value="업로드" class="btn btn-success btn-xs" style="font-weight:bold; width:100px; height:40px;" 
+						data-toggle="tooltip" data-placement="top" title="파일을 업로드 합니다.">
 					</td>
 				</tr>
+				</tbody>
 			</table>
 		</div>
 	</form>
 	
+	<!-- 파일 목록 -->
 	<div class="container">
-		<table class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
+		<table id="main-table" class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
 			<thead>
 				<tr>
-					<th colspan="6"><h4>파일 토렌트</h4></th>
+					<th colspan="6"><h4>파일 목록</h4></th>
 				</tr>
 				<tr>
 					<th style="font-weight: bold; background-color: #fafafa; color: #000000; width: 70px;"><h5>유형</h5></th> 
@@ -294,7 +313,7 @@
 					<td style="text-align: left; vertical-align: middle;"><a class="downloadtag" onclick="load(this.title);"
 					title="<%= java.net.URLEncoder.encode(file.getFileRealName(), "UTF-8")%>.<%= file.getUploadUserID() %>"><%= file.getFileName() %></a></td>
 					<td style="text-align:center; vertical-align: middle;"><%= file.getFileSize() %></td>
-					<td style="text-align:center; vertical-align: middle;"><%= userID %></td>
+					<td style="text-align:center; vertical-align: middle;"><%= file.getUploadUserID() %></td>
 					<td style="text-align:center; vertical-align: middle;"><%= file.getFileDate() %></td>
 					<td style="text-align:center; vertical-align: middle;"><%= file.getDownloadCount() %></td>
 				</tr>
@@ -306,10 +325,7 @@
 	</div>
 	
 	<%
-		/*
-			UserRegisterServlet.java, UserLoginServlet에서 session.setAttribute로 정의한 
-			messageContent,messageType 을 session.getAttribute를 통해 가져와서, 색깔셋팅 등 messageModal 설정부분
-		*/
+		// 세션값 검증 
 		String messageContent = null;
 		if (session.getAttribute("messageContent") != null) {
 			messageContent = (String) session.getAttribute("messageContent");
@@ -345,13 +361,37 @@
 		</div>
 	</div>
 	<%
-		session.removeAttribute("messageContent");
+		session.removeAttribute("messageContent"); // 모달창이 띄워진 후에는 파기시킴 (단 한번만 사용자에게 보여지도록..)
 		session.removeAttribute("messageType");
 		}
 	%>
 	<script>
 		$('#messageModal').modal("show");
 	</script>
+	
+	<!-- checkModal -->
+	<div class="modal fade" id="checkModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="vertical-alignment-helper">
+			<div class="modal-dialog vertical-align-center">
+				<div id="checkType" class="modal-content panel-info">		<!-- id: checkType -->
+					<div class="modal-header panel-heading">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times</span>		
+							<span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title">
+							확인 메세지
+						</h4>
+					</div>
+					<div class="modal-body" id="checkMessage">		<!-- id: checkMessage -->
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<%
 		if(userID != null) {
 	%>
@@ -359,6 +399,15 @@
 			$(document).ready(function() {
 				getUnread(); // 4초 안기다리고 바로 볼 수 있게 먼저해놓음 
 				getInfiniteUnread();
+				$('[data-toggle=tooltip]').tooltip({container: 'body'});
+				/* 검색 필터링 */
+				$('#keyword').keyup(function() { // keyup : 키보드를 눌렀다 땔때..
+					var k = $(this).val().toLowerCase(); // input텍스트 필드의 value속성값 (대소문자 구별x)
+					$('#main-table > tbody > tr').hide();
+					var temp = $("#main-table > tbody > tr > td:nth-child(6n+2):contains('" + k + "')"); // nth-child(6n+2): 컬럼갯수가 6개인 테이블에서 2번째. 즉, '파일이름'에 대한 검색결과를 포함하는 td를 temp에 담는다.
+					
+					$(temp).parent().show(); // 화면에 나타나도록 처리하는 요소는 td의 부모인 tr이므로, parent()메서드로 부모 요소를 선택하여 화면에 보여줌 
+				});
 			});
 		</script>
 	<%

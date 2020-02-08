@@ -52,6 +52,9 @@ public class FileDTO {
 	public void setUploadUserID(String uploadUserID) {
 		this.uploadUserID = uploadUserID;
 	}
+	public FileDTO() {
+		super();
+	}
 	public FileDTO(String fileName, String fileRealName, int downloadCount, String fileDate, String fileType, String fileSize, String uploadUserID) {
 		super();
 		this.fileName = fileName;

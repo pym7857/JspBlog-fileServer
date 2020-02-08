@@ -20,7 +20,9 @@ public class UserRegisterCheckServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		
 		String userID = request.getParameter("userID");
-		if(userID == null || userID.equals(""))
+		
+		// 예외처리
+		if(userID == null || userID.equals("") || userID.equals("admin"))
 			response.getWriter().write("-1");
 		response.getWriter().write(new UserDAO().registerCheck(userID) + ""); // 문자열형태로 출력해주기위해 ""(공백) 추가
 	}
