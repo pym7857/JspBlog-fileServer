@@ -1,3 +1,4 @@
 /build/
 /.metadata/
 *.xml
+JSPBlog/WebContent/META-INF/context.xml
