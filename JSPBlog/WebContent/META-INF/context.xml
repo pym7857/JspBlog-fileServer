@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context>
+<Context> <!-- 설정 -->
 <Resource
 	name="jdbc/pym7857"
 	auth="Container"
@@ -9,7 +9,7 @@
 	validationQuery="SELECT 1 FROM DUAL"
 	maxWait="5000"
 	username="pym7857" 
-	password="pym7857!"
+	password="pym7857!" 
 	testOnBorrow="true"
 	url="jdbc:mariadb://localhost/pym7857?serverTimezone=UTC"/>
 <ResourceLink type="javax.sql.data.DataSource"
