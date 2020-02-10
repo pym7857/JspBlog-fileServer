@@ -24,11 +24,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/custom.css?ver=1">
+	<link rel="stylesheet" type="text/css" href="css/custom.css?after">
 	<link rel="stylesheet" type="text/css" href="css/custom2.css?ver=1">
 	<title>OKKY</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
+	<script src="https://kit.fontawesome.com/4aa58836e4.js" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		/* 상단 내비게이션 메세지함 unread 라벨 표시 */
 		function getUnread() {
@@ -58,7 +59,7 @@
 	</script>
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
@@ -67,7 +68,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp">조유리 사생팬 블로그</a>
+			<a class="navbar-brand" href="index.jsp"><i class="fa fa-home"></i> 조유리 사생팬</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -117,7 +118,7 @@
 	<div class="container">
 		<div class="row">
             <div class="col-md-6">
-                <h4>실시간 인기 게시물</h4>
+                <h4><i class="fa fa-fire"></i> 실시간 인기 게시물</h4>
                	<hr>
             <%
 				for(int i=0; i<boardPopularList.size(); i++) {
@@ -134,7 +135,7 @@
 			%>
             </div>
             <div class="col-md-6">
-            	<h4>최신글</h4>
+            	<h4><i class="fa fa-map-marker-alt"></i> 최신글</h4>
             	<hr>
             <%
 				for(int i=0; i<boardList.size(); i++) {
@@ -153,7 +154,7 @@
         <hr>
         <!-- 미디어 -->
         <div class="panel panel-primary">
-            <div class="panel-heading">
+            <div class="panel-heading" style="background-color: #6b7ae0;">
                 <h3 class="panel-title"><span class="glyphicon glyphicon-pencil"></span>
                 &nbsp;&nbsp;최신 강의 목록</h3>
             </div>

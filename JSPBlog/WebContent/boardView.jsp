@@ -38,6 +38,7 @@
 	<title>OKKY</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
+	<script src="https://kit.fontawesome.com/4aa58836e4.js" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		/* 상단 내비게이션 메세지함 unread 라벨 표시 */
 		function getUnread() {
@@ -67,7 +68,7 @@
 	</script>
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
@@ -76,7 +77,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp">조유리 사생팬 블로그</a>
+			<a class="navbar-brand" href="index.jsp"><i class="fa fa-home"></i> 조유리 사생팬</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -127,7 +128,7 @@
 		<table class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
 			<thead>
 				<tr>
-					<th colspan="6"><h4>자유게시판</h4></th>
+					<th colspan="6"><h4>자유게시판 <i class="fa fa-pencil-alt"></i></h4></th>
 				</tr>
 				<tr>
 					<th style="font-weight: bold; background-color: #fafafa; color: #000000; width: 70px;"><h5>번호</h5></th> 

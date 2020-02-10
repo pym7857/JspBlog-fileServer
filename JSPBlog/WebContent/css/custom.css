@@ -22,9 +22,11 @@ h1 {
 	font-family: 'Hanna';
 }
 
+body { padding-top: 100px; }
+
 /* 테이블 관련 디자인 처리 */
 thead th {
-	background-color: #2d1f1f;
+	background-color: #6b7ae0;
 	color: white;
 	text-align: center;
 }

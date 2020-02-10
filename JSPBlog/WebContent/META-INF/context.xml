@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
 <Resource
-	name="jdbc/JSPBlog"
+	name="jdbc/pym7857"
 	auth="Container"
 	type="javax.sql.DataSource"
-	driverClassName="com.mysql.cj.jdbc.Driver"
+	driverClassName="org.mariadb.jdbc.Driver"
 	loginTimeout="10"
 	validationQuery="SELECT 1 FROM DUAL"
 	maxWait="5000"
-	username="root" 
-	password="1562"
+	username="pym7857" 
+	password="pym7857!"
 	testOnBorrow="true"
-	url="jdbc:mysql://localhost:3306/JSPBlog?serverTimezone=UTC"/>
+	url="jdbc:mariadb://localhost/pym7857?serverTimezone=UTC"/>
 <ResourceLink type="javax.sql.data.DataSource"
-	name="jdbc/JSPBlog"
-	global="jdbc/JSPBlog"/>
+	name="jdbc/pym7857"
+	global="jdbc/pym7857"/>
 </Context>

@@ -17,7 +17,7 @@ public class BoardDAO {
 		try {
 			InitialContext initContext = new InitialContext();
 			Context envContext = (Context) initContext.lookup("java:/comp/env");
-			dataSource = (DataSource) envContext.lookup("jdbc/JSPBlog");
+			dataSource = (DataSource) envContext.lookup("jdbc/pym7857");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -27,7 +27,7 @@ public class BoardDAO {
 	public int write(String userID, String boardTitle, String boardContent, String boardFile, String boardRealFile) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String SQL = "INSERT INTO BOARD SELECT ?, IFNULL((SELECT MAX(boardID) + 1 FROM BOARD), 1), ?, ?, now(), 0, ?, ?, IFNULL((SELECT MAX(boardGroup) + 1 FROM BOARD), 1), 0, 0, 0";
+		String SQL = "INSERT INTO board SELECT ?, IFNULL((SELECT MAX(boardID) + 1 FROM board), 1), ?, ?, now(), 0, ?, ?, IFNULL((SELECT MAX(boardGroup) + 1 FROM board), 1), 0, 0, 0";
 		try {
 			conn = dataSource.getConnection(); // 실질적으로 커넥션풀에 접근하게 해줌 
 			pstmt = conn.prepareStatement(SQL);
@@ -54,7 +54,7 @@ public class BoardDAO {
 	public int commentWrite(String boardID, String content, String userID) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String SQL = "INSERT INTO COMMENT SELECT IFNULL((SELECT MAX(commentID) + 1 FROM COMMENT), 1), ?, ?, now(), ?";
+		String SQL = "INSERT INTO comment SELECT IFNULL((SELECT MAX(commentID) + 1 FROM comment), 1), ?, ?, now(), ?";
 		try {
 			conn = dataSource.getConnection(); // 실질적으로 커넥션풀에 접근하게 해줌 
 			pstmt = conn.prepareStatement(SQL);
@@ -82,7 +82,7 @@ public class BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT * FROM BOARD WHERE boardID = ?";
+		String SQL = "SELECT * FROM board WHERE boardID = ?";
 		try {
 			conn = dataSource.getConnection(); 
 			pstmt = conn.prepareStatement(SQL);
@@ -123,7 +123,7 @@ public class BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT * FROM COMMENT WHERE commentID = ?";
+		String SQL = "SELECT * FROM comment WHERE commentID = ?";
 		try {
 			conn = dataSource.getConnection(); 
 			pstmt = conn.prepareStatement(SQL);
@@ -157,7 +157,7 @@ public class BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT * FROM BOARD WHERE boardGroup > (SELECT MAX(boardGroup) FROM BOARD) -? AND boardGroup <= (SELECT MAX(boardGroup) FROM BOARD) -? ORDER BY boardGroup DESC, boardSequence ASC";
+		String SQL = "SELECT * FROM board WHERE boardGroup > (SELECT MAX(boardGroup) FROM board) -? AND boardGroup <= (SELECT MAX(boardGroup) FROM board) -? ORDER BY boardGroup DESC, boardSequence ASC";
 		try {
 			conn = dataSource.getConnection(); 
 			pstmt = conn.prepareStatement(SQL);
@@ -202,7 +202,7 @@ public class BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT * FROM BOARD WHERE boardGroup > (SELECT MAX(boardGroup) FROM BOARD) -? ORDER BY boardGroup DESC, boardSequence ASC";
+		String SQL = "SELECT * FROM board WHERE boardGroup > (SELECT MAX(boardGroup) FROM board) -? ORDER BY boardGroup DESC, boardSequence ASC";
 		try {
 			conn = dataSource.getConnection(); 
 			pstmt = conn.prepareStatement(SQL);
@@ -246,7 +246,7 @@ public class BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT * FROM BOARD WHERE boardLike >= 3 ORDER BY boardGroup DESC, boardSequence ASC";
+		String SQL = "SELECT * FROM board WHERE boardLike >= 3 ORDER BY boardGroup DESC, boardSequence ASC";
 		try {
 			conn = dataSource.getConnection(); 
 			pstmt = conn.prepareStatement(SQL);
@@ -290,7 +290,7 @@ public class BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT * FROM COMMENT WHERE boardID = ?";
+		String SQL = "SELECT * FROM comment WHERE boardID = ?";
 		try {
 			conn = dataSource.getConnection(); 
 			pstmt = conn.prepareStatement(SQL);
@@ -324,7 +324,7 @@ public class BoardDAO {
 	public int hit(String boardID) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String SQL = "UPDATE BOARD SET boardHit = boardHit + 1 WHERE boardID = ?";
+		String SQL = "UPDATE board SET boardHit = boardHit + 1 WHERE boardID = ?";
 		try {
 			conn = dataSource.getConnection(); // 실질적으로 커넥션풀에 접근하게 해줌 
 			pstmt = conn.prepareStatement(SQL);
@@ -348,7 +348,7 @@ public class BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT boardLike FROM BOARD WHERE boardID = ?";
+		String SQL = "SELECT boardLike FROM board WHERE boardID = ?";
 		try {
 			conn = dataSource.getConnection(); 
 			pstmt = conn.prepareStatement(SQL);
@@ -375,7 +375,7 @@ public class BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "UPDATE BOARD SET boardLike = boardLike + 1 WHERE boardID = ? ";
+		String SQL = "UPDATE board SET boardLike = boardLike + 1 WHERE boardID = ? ";
 		try {
 			conn = dataSource.getConnection(); 
 			pstmt = conn.prepareStatement(SQL);
@@ -399,7 +399,7 @@ public class BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT * FROM BOARD WHERE boardGroup >= ?";
+		String SQL = "SELECT * FROM board WHERE boardGroup >= ?";
 		try {
 			conn = dataSource.getConnection(); 
 			pstmt = conn.prepareStatement(SQL);
@@ -427,7 +427,7 @@ public class BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT COUNT(boardGroup) FROM BOARD WHERE boardGroup > ?"; // pageNumber = 1 일때 : 모든 게시물의 개수 반환, pageNumber = 2 일때, 모든게시물-10개 반환 . . . 
+		String SQL = "SELECT COUNT(boardGroup) FROM board WHERE boardGroup > ?"; // pageNumber = 1 일때 : 모든 게시물의 개수 반환, pageNumber = 2 일때, 모든게시물-10개 반환 . . . 
 		try {
 			conn = dataSource.getConnection(); 
 			pstmt = conn.prepareStatement(SQL);
@@ -454,7 +454,7 @@ public class BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT boardFile FROM BOARD WHERE boardID = ?";
+		String SQL = "SELECT boardFile FROM board WHERE boardID = ?";
 		try {
 			conn = dataSource.getConnection(); 
 			pstmt = conn.prepareStatement(SQL);
@@ -482,7 +482,7 @@ public class BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT boardRealFile FROM BOARD WHERE boardID = ?";
+		String SQL = "SELECT boardRealFile FROM board WHERE boardID = ?";
 		try {
 			conn = dataSource.getConnection(); 
 			pstmt = conn.prepareStatement(SQL);
@@ -510,7 +510,7 @@ public class BoardDAO {
 	public int update(String boardID, String boardTitle, String boardContent, String boardFile, String boardRealFile) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String SQL = "UPDATE BOARD SET boardTitle = ?, boardContent = ?, boardFile = ?, boardRealFile = ? WHERE boardID = ?";
+		String SQL = "UPDATE board SET boardTitle = ?, boardContent = ?, boardFile = ?, boardRealFile = ? WHERE boardID = ?";
 		try {
 			conn = dataSource.getConnection(); // 실질적으로 커넥션풀에 접근하게 해줌 
 			pstmt = conn.prepareStatement(SQL);
@@ -537,7 +537,7 @@ public class BoardDAO {
 	public int delete(String boardID) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String SQL = "DELETE FROM BOARD WHERE boardID = ?";
+		String SQL = "DELETE FROM board WHERE boardID = ?";
 		try {
 			conn = dataSource.getConnection(); // 실질적으로 커넥션풀에 접근하게 해줌 
 			pstmt = conn.prepareStatement(SQL);
@@ -560,7 +560,7 @@ public class BoardDAO {
 	public int deleteComment(String commentID) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String SQL = "DELETE FROM COMMENT WHERE commentID = ?";
+		String SQL = "DELETE FROM comment WHERE commentID = ?";
 		try {
 			conn = dataSource.getConnection(); // 실질적으로 커넥션풀에 접근하게 해줌 
 			pstmt = conn.prepareStatement(SQL);

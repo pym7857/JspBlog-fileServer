@@ -24,7 +24,7 @@ public class BoardWriteServlet extends HttpServlet {
 		// cos.jar 을 이용하여 파일업로드 환경설정 (MultipartRequest 이용)
 		MultipartRequest multi = null;
 		int fileMaxSize = 10 * 1024 * 1024;
-		String savePath = request.getRealPath("/upload").replaceAll("\\\\", "/"); // upload라는 폴더 직접 가서 만들어줘야됨  (C:\Users\pym78\Documents\GitHub\javaAjaxChat\JspAjax\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\UserChat)
+		String savePath = "/pym7857/tomcat/webapps/file/".replaceAll("\\\\", "/"); // upload라는 폴더 직접 가서 만들어줘야됨  (C:\Users\pym78\Documents\GitHub\javaAjaxChat\JspAjax\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\UserChat)
 		try {
 			multi = new MultipartRequest(request, savePath, fileMaxSize, "UTF-8", new DefaultFileRenamePolicy());
 		} catch (Exception e) {

@@ -16,7 +16,7 @@ public class uploadActionServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String directory = "C:/JSP/upload/";
+		String directory = "/pym7857/tomcat/webapps/file/";
 		int maxSize = 1024 * 1024 * 100; // 100MB 까지만 업로드
 		String encoding = "UTF-8";
 		
@@ -63,7 +63,8 @@ public class uploadActionServlet extends HttpServlet {
 		// 확장자 예외처리 
 		if (fileName.endsWith(".doc") || fileName.endsWith(".hwp") || fileName.endsWith(".pdf") || fileName.endsWith(".xls") ||
 				fileName.endsWith(".jpg") || fileName.endsWith(".png") || fileName.endsWith(".jpeg") || fileName.endsWith(".gif") ||
-				fileName.endsWith(".mp3") || fileName.endsWith(".mp4") || fileName.endsWith(".avi") || fileName.endsWith(".docx")) {
+				fileName.endsWith(".mp3") || fileName.endsWith(".mp4") || fileName.endsWith(".avi") || fileName.endsWith(".docx") ||
+				fileName.endsWith(".txt")) {
 			new FileDAO().upload(fileName, fileRealName, fileType, fileSize, userID);
 			request.getSession().setAttribute("messageType", "성공 메세지");
 			request.getSession().setAttribute("messageContent", "성공적으로 파일이 업로드 되었습니다.");

@@ -8,16 +8,16 @@
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 	 	try {
-			String url = "jdbc:mysql://localhost:3306/JSPBlog?serverTimezone=UTC";
-			String dbUser = "root";
-			String dbPass = "1562";
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			String url = "jdbc:mariadb://localhost/pym7857?serverTimezone=UTC";
+			String dbUser = "pym7857";
+			String dbPass = "pym7857!";
+			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DriverManager.getConnection(url, dbUser, dbPass);
 			String sql = "SELECT VERSION();";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
-				out.println("MySQL Version: " + rs.getString("version()"));
+				out.println("MariaDB Version: " + rs.getString("version()"));
 			}
 	 	} catch (Exception e) {
 			System.out.println(e);

@@ -4,6 +4,8 @@
 <%@ page import="file.FileDAO" %>
 <%@ page import="file.FileDTO" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.io.BufferedReader" %>
+<%@ page import="java.io.FileReader" %>
 <!DOCTYPE html>
 <html>
 <%
@@ -136,13 +138,12 @@
 					java.net.URLEncoder.encode(file, "UTF-8") + "\">" + file + "</a><br>");
 			}
 		*/
-		ArrayList<FileDTO> fileList = new FileDAO().getList();
 		
-		for(FileDTO file : fileList) {
-			out.write("<a class='downloadtag' href=\"" + request.getContextPath() + "/downloadAction?file=" +
-					java.net.URLEncoder.encode(file.getFileRealName(), "UTF-8") + "\">" + 
-						file.getFileName() + "(다운로드 횟수: " + file.getDownloadCount() + ")</a><br>");
-		}
+		String path = "/pym7857/tomcat/webapps/file/";
+			BufferedReader in = new BufferedReader(new FileReader(path + "ID.txt"));
+			String ID = in.readLine();
+			in.close();
 	%>
+	<%= ID %>
 </body>
 </html>

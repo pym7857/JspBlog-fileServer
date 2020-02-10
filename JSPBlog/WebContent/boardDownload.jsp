@@ -26,8 +26,10 @@
 			return;
 		}
 		
-		String root = request.getSession().getServletContext().getRealPath("/");
-		String savePath = root + "upload"; // 만들었던 upload 폴더에 접근
+		
+		//String root = request.getSession().getServletContext().getRealPath("/");
+		//String savePath = root + "upload"; // 만들었던 upload 폴더에 접근
+		String savePath = "/pym7857/tomcat/webapps/file/";
 		String fileName = "";
 		String realFile = "";
 		BoardDAO boardDAO = new BoardDAO();

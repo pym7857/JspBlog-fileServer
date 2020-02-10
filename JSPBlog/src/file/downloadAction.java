@@ -21,7 +21,7 @@ public class downloadAction extends HttpServlet {
 		//System.out.println('1' + fileName);
 		
 		//String directory = this.getServletContext().getRealPath("/upload/");
-		String directory = "C:/JSP/upload/";
+		String directory = "/pym7857/tomcat/webapps/file/";
 		File file = new File(directory + "/" + fileName);
 		
 		String mimeType = getServletContext().getMimeType(file.toString()); // mimeType을 통해 file데이터 라는것을 알려줌 

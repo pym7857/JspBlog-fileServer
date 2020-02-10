@@ -16,7 +16,7 @@ public class UserDAO {
 		try {
 			InitialContext initContext = new InitialContext();
 			Context envContext = (Context) initContext.lookup("java:/comp/env");
-			dataSource = (DataSource) envContext.lookup("jdbc/JSPBlog");
+			dataSource = (DataSource) envContext.lookup("jdbc/pym7857");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -27,7 +27,7 @@ public class UserDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT * FROM USER WHERE userID = ?";
+		String SQL = "SELECT * FROM user WHERE userID = ?";
 		try {
 			conn = dataSource.getConnection(); // 실질적으로 커넥션풀에 접근하게 해줌 
 			pstmt = conn.prepareStatement(SQL);
@@ -60,7 +60,7 @@ public class UserDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT * FROM USER WHERE userID = ?";
+		String SQL = "SELECT * FROM user WHERE userID = ?";
 		try {
 			conn = dataSource.getConnection(); // 실질적으로 커넥션풀에 접근하게 해줌 
 			pstmt = conn.prepareStatement(SQL);
@@ -88,7 +88,7 @@ public class UserDAO {
 	public int register(String userID, String userPassword, String userName, String userAge, String userGender, String userEmail, String userProfile) { // 아이디 중복체크
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String SQL = "INSERT INTO USER VALUES (?, ?, ?, ?, ?, ?, ?, 0)";
+		String SQL = "INSERT INTO user VALUES (?, ?, ?, ?, ?, ?, ?, 0)";
 		try {
 			conn = dataSource.getConnection(); // 실질적으로 커넥션풀에 접근하게 해줌 
 			pstmt = conn.prepareStatement(SQL);
@@ -122,7 +122,7 @@ public class UserDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT * FROM USER WHERE userID = ?";
+		String SQL = "SELECT * FROM user WHERE userID = ?";
 		try {
 			conn = dataSource.getConnection(); 
 			pstmt = conn.prepareStatement(SQL);
@@ -211,7 +211,7 @@ public class UserDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT userProfile FROM USER WHERE userID = ?";
+		String SQL = "SELECT userProfile FROM user WHERE userID = ?";
 		try {
 			conn = dataSource.getConnection(); // 실질적으로 커넥션풀에 접근하게 해줌 
 			pstmt = conn.prepareStatement(SQL);
@@ -219,9 +219,9 @@ public class UserDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				if(rs.getString("userProfile").equals("")) { 
-					return "http://localhost:8084/JSPBlog/images/icon.png"; // 기본 상태의 프로필 사진 
+					return "http://pym7857.cafe24.com/images/icon.png"; // 기본 상태의 프로필 사진 
 				}
-				return "http://localhost:8084/JSPBlog/upload/" + rs.getString("userProfile");
+				return "http://pym7857.cafe24.com/file/" + rs.getString("userProfile");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -241,7 +241,7 @@ public class UserDAO {
 	public int getPoint(String userID) { 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String SQL = "UPDATE USER SET userPoint = userPoint + 1 WHERE userID = ?";
+		String SQL = "UPDATE user SET userPoint = userPoint + 1 WHERE userID = ?";
 		try {
 			conn = dataSource.getConnection(); // 실질적으로 커넥션풀에 접근하게 해줌 
 			pstmt = conn.prepareStatement(SQL);

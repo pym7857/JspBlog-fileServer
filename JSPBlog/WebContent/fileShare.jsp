@@ -28,7 +28,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/custom.css?ver=1">
+	<link rel="stylesheet" type="text/css" href="css/custom.css?versionewg=2">
 	<link rel="stylesheet" type="text/css" href="css/custom2.css?ver=1">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css" />
 	<title>OKKY</title>
@@ -36,6 +36,7 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.ui.position.js"></script>
 	<script src="js/bootstrap.js"></script>
+	<script src="https://kit.fontawesome.com/4aa58836e4.js" crossorigin="anonymous"></script>
 	<style type="text/css">
 		.downloadtag {
 			cursor: pointer;
@@ -165,7 +166,6 @@
 	            	} else {
 	            		console.log(uid, uploader);
 	            		if (confirm('정말로 삭제하시겠습니까? 삭제된 자료는 되돌릴 수 없습니다.')) {
-	            			console.log('hi');
 	            			location.href = deleteUrl;
 	            		}
 	            	}
@@ -189,7 +189,7 @@
 	</script>
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
@@ -198,7 +198,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp">조유리 사생팬 블로그</a>
+			<a class="navbar-brand" href="index.jsp"><i class="fa fa-home"></i> 조유리 사생팬</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -251,14 +251,11 @@
 		<div class="container">
 			<table class="table table-bordered table-hover" style="text-align: center; margin-bottom: 10px; border: 1px solid black;">
 				<thead>
-					<tr>
-						<th colspan="6"><h4>파일 토렌트</h4></th>
-					</tr>
 				</thead>
 				<tbody>
 				<!-- 파일 검색 -->
 				<tr>
-					<td style="width: 110px;"><h5>파일 검색</h5></td>
+					<td style="width: 110px;"><h5>파일 검색 <i class="fa fa-search"></i></h5></td>
 					<td colspan="5"><input type="text" id="keyword" maxlength="20" placeholder=" 찾을 파일의 이름을 입력하세요." 
 					data-toggle="tooltip" data-placement="bottom" title="짧은 키워드로 파일을 검색할 수 있습니다."></td>
 				</tr>
@@ -279,21 +276,19 @@
 			</table>
 		</div>
 	</form>
+	<br><br>
 	
 	<!-- 파일 목록 -->
 	<div class="container">
 		<table id="main-table" class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
 			<thead>
 				<tr>
-					<th colspan="6"><h4>파일 목록</h4></th>
-				</tr>
-				<tr>
-					<th style="font-weight: bold; background-color: #fafafa; color: #000000; width: 70px;"><h5>유형</h5></th> 
-					<th style="background-color: #fafafa; color: #000000;"><h5>파일 이름</h5></th> 
-					<th style="background-color: #fafafa; color: #000000;"><h5>용량</h5></th>
-					<th style="background-color: #fafafa; color: #000000;"><h5>업로더</h5></th> 
-					<th style="background-color: #fafafa; color: #000000; width: 100px;"><h5>업로드 날짜</h5></th> 
-					<th style="background-color: #fafafa; color: #000000; width: 120px;"><h5>다운로드 횟수</h5></th> 
+					<th style="width: 70px;"><h5>유형</h5></th> 
+					<th><h5>파일 이름</h5></th> 
+					<th><h5>용량</h5></th>
+					<th><h5>업로더</h5></th> 
+					<th style="width: 100px;"><h5>업로드 날짜</h5></th> 
+					<th style="width: 120px;"><h5>다운로드 횟수</h5></th> 
 				</tr>
 			</thead>
 			<tbody>
@@ -308,6 +303,8 @@
 							lastType = "word";
 						if (lastType.equals("haansofthwp"))
 							lastType = "hwp";
+						if (lastType.equals("plain"))
+							lastType = "txt";
 					%>
 					<td style="text-align:center; vertical-align: middle;"><%= lastType %></td>
 					<td style="text-align: left; vertical-align: middle;"><a class="downloadtag" onclick="load(this.title);"

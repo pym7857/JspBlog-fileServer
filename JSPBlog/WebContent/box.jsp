@@ -21,11 +21,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/custom.css">
+	<link rel="stylesheet" type="text/css" href="css/custom.css?versionewg=2">
 	<link rel="stylesheet" type="text/css" href="css/custom2.css">
 	<title>OKKY</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
+	<script src="https://kit.fontawesome.com/4aa58836e4.js" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		/* 상단 내비게이션 메세지함 unread 라벨 표시 */
 		function getUnread() {
@@ -100,7 +101,7 @@
 	</script>
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
@@ -109,7 +110,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp">조유리 사생팬 블로그</a>
+			<a class="navbar-brand" href="index.jsp"><i class="fa fa-home"></i> 조유리 사생팬</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -136,11 +137,12 @@
 			</ul>
 		</div>
 	</nav>
+	
 	<div class="container">
 		<table class="table" style="margin: 0 auto;">
 			<thead>
 				<tr>
-					<th><h4>주고받은 메세지 목록</h4></th>
+					<th><h4>메세지 목록 <i class="fa fa-comment-dots"></i></h4></th>
 				</tr>
 			</thead>
 			<div style="overflow-y: auto; width: 100%; max-height: 450px;">

@@ -34,6 +34,7 @@
 	<title>스트리밍</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
+	<script src="https://kit.fontawesome.com/4aa58836e4.js" crossorigin="anonymous"></script>
 	<style type="text/css">
 	  .vjs-default-skin { color: #ffffff; font-size: 1.5rem;}
 	  .vjs-default-skin .vjs-play-progress,
@@ -148,7 +149,7 @@
 	</script>
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
@@ -157,7 +158,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp">조유리 사생팬 블로그</a>
+			<a class="navbar-brand" href="index.jsp"><i class="fa fa-home"></i> 조유리 사생팬</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -214,7 +215,7 @@
 	<!-- 비디오 플레이어 -->
 	<div class="container" style="padding-top: 90px;">
 		<video id="streaming_video" class="video-js vjs-default-skin">
-			<source src="http://localhost:8084/JSPBlog/downloadAction?file=<%= streamFileName %>" type="video/mp4" label="원본">
+			<source src="http://pym7857.cafe24.com/downloadAction?file=<%= streamFileName %>" type="video/mp4" label="원본">
 		</video>
 	</div>
 	<div style="text-align: center; margin-top: 10px; font-size: 2rem; color: #bbb;">Powered by <a href="http://www2.videojs.com/" title="http://www2.videojs.com/">Video.js</a></div>

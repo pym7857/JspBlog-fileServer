@@ -21,11 +21,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/custom.css?ver=1">
+	<link rel="stylesheet" type="text/css" href="css/custom.css?versionewg=2">
 	<link rel="stylesheet" type="text/css" href="css/custom2.css">
 	<title>OKKY</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
+	<script src="https://kit.fontawesome.com/4aa58836e4.js" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		function findingFunction() {
 			
@@ -99,7 +100,7 @@
 	</script>
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
@@ -108,7 +109,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp">조유리 사생팬 블로그</a>
+			<a class="navbar-brand" href="index.jsp"><i class="fa fa-home"></i> 조유리 사생팬</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -145,7 +146,7 @@
 		<table class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd;">
 			<thead>
 				<tr>
-					<th colspan="2"><h4>검색으로  친구찾기</h4></th>
+					<th colspan="2"><h4>검색으로  친구찾기 <i class="fa fa-search"></i></h4></th>
 				</tr>
 			</thead>
 			<tbody>

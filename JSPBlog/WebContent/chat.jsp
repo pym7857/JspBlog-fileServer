@@ -46,6 +46,7 @@
 	<title>OKKY</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
+	<script src="https://kit.fontawesome.com/4aa58836e4.js" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		function autoClosingAlert(selector, delay) {
 			var alert = $(selector).alert();
@@ -70,11 +71,11 @@
 					},
 					success: function(result) {	// 콜백함수- 서버에서 response했을때 그 response를 어떻게 처리할까?
 						if(result == 1) {
-							autoClosingAlert('#successMessage', 2000);
+							autoClosingAlert('#successMessage', 2000); // 전송 성공
 						} else if (result == 0) {
-							autoClosingAlert('#dangerMessage', 2000); 
+							autoClosingAlert('#dangerMessage', 2000); // 모든 메세지 입력하세요
 						} else {
-							autoClosingAlert('#warningMessage', 2000);
+							autoClosingAlert('#warningMessage', 2000); // 디비 오류
 						}
 					}
 			});
@@ -195,7 +196,7 @@
 	</script>
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
@@ -204,7 +205,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp">조유리 사생팬 블로그</a>
+			<a class="navbar-brand" href="index.jsp"><i class="fa fa-home"></i> 조유리 사생팬</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">

@@ -16,6 +16,7 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
   <link href="css/freelancer.min.css" type="text/css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://kit.fontawesome.com/4aa58836e4.js" crossorigin="anonymous"></script>
   <style type="text/css">
 	/* skillsInfo*/
 	#skillsInfoArea {
@@ -82,7 +83,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">조유리 사생팬 블로그</a>
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">조유리 사생팬 블로그 <i class="fa fa-palette"></i></a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>

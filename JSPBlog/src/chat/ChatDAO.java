@@ -17,7 +17,7 @@ public class ChatDAO {
 		try {
 			InitialContext initContext = new InitialContext();
 			Context envContext = (Context) initContext.lookup("java:/comp/env");
-			dataSource = (DataSource) envContext.lookup("jdbc/JSPBlog");
+			dataSource = (DataSource) envContext.lookup("jdbc/pym7857");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -32,7 +32,7 @@ public class ChatDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT*FROM CHAT WHERE ( (fromID = ? AND toID = ?) OR (fromID = ? AND toID = ?) ) AND chatID > ? ORDER BY chatTime";
+		String SQL = "SELECT*FROM chat WHERE ( (fromID = ? AND toID = ?) OR (fromID = ? AND toID = ?) ) AND chatID > ? ORDER BY chatTime";
 		try {
 			conn = dataSource.getConnection();
 			pstmt = conn.prepareStatement(SQL);
@@ -83,10 +83,10 @@ public class ChatDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT*FROM CHAT "
+		String SQL = "SELECT*FROM chat "
 				+ "WHERE ( (fromID = ? AND toID = ?) OR (fromID = ? AND toID = ?) ) "
 				+ "AND chatID > (SELECT MAX(chatID) - ? "
-								+ "FROM CHAT "
+								+ "FROM chat "
 								+ "WHERE (fromID = ? AND toID = ?) OR (fromID =? AND toID = ?)) " /* 해당 두사람이 대화한 정보만 가져온다 */
 								+ "ORDER BY chatTime";
 		try {
@@ -192,7 +192,7 @@ public class ChatDAO {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String SQL = "INSERT INTO CHAT VALUES (NULL, ?, ?, ?, NOW(), 0)"; // 보내는순간, chatRead = 0 으로 설정
+		String SQL = "INSERT INTO chat VALUES (NULL, ?, ?, ?, NOW(), 0)"; // 보내는순간, chatRead = 0 으로 설정
 		try {
 			conn = dataSource.getConnection();
 			pstmt = conn.prepareStatement(SQL);
@@ -221,7 +221,7 @@ public class ChatDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "UPDATE CHAT SET chatRead = 1 WHERE (fromID = ? AND toID = ?)"; // 받는사람 입장
+		String SQL = "UPDATE chat SET chatRead = 1 WHERE (fromID = ? AND toID = ?)"; // 받는사람 입장
 		try {
 			conn = dataSource.getConnection();
 			pstmt = conn.prepareStatement(SQL);
@@ -250,7 +250,7 @@ public class ChatDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT COUNT(chatID) FROM CHAT WHERE toID = ? AND chatRead = 0";
+		String SQL = "SELECT COUNT(chatID) FROM chat WHERE toID = ? AND chatRead = 0";
 		try {
 			conn = dataSource.getConnection();
 			pstmt = conn.prepareStatement(SQL);
@@ -278,7 +278,7 @@ public class ChatDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT COUNT(chatID) FROM CHAT WHERE fromID = ? AND toID = ? AND chatRead = 0";
+		String SQL = "SELECT COUNT(chatID) FROM chat WHERE fromID = ? AND toID = ? AND chatRead = 0";
 		try {
 			conn = dataSource.getConnection();
 			pstmt = conn.prepareStatement(SQL);

@@ -18,7 +18,7 @@ public class FileDAO {
 		try {
 			InitialContext initContext = new InitialContext();
 			Context envContext = (Context) initContext.lookup("java:/comp/env");
-			dataSource = (DataSource) envContext.lookup("jdbc/JSPBlog");
+			dataSource = (DataSource) envContext.lookup("jdbc/pym7857");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -27,7 +27,7 @@ public class FileDAO {
 	public int upload(String fileName, String fileRealName, String fileType, String fileSize, String uploadUserID) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String SQL = "INSERT INTO FILE VALUES (?, ?, 0, now(), ?, ?, ?)";
+		String SQL = "INSERT INTO file VALUES (?, ?, 0, now(), ?, ?, ?)";
 		try {
 			conn = dataSource.getConnection(); 
 			pstmt = conn.prepareStatement(SQL);
@@ -47,7 +47,7 @@ public class FileDAO {
 	public int hit(String fileRealName) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String SQL = "UPDATE FILE SET downloadCount = downloadCount + 1 WHERE fileRealName = ?"; // update SQL오류시 : MySQL: Edit-preference-SQLEditor-Other-Safe Updates 해제 !
+		String SQL = "UPDATE file SET downloadCount = downloadCount + 1 WHERE fileRealName = ?"; // update SQL오류시 : MySQL: Edit-preference-SQLEditor-Other-Safe Updates 해제 !
 		try {
 			conn = dataSource.getConnection(); 
 			pstmt = conn.prepareStatement(SQL);
@@ -66,7 +66,7 @@ public class FileDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT * FROM FILE";
+		String SQL = "SELECT * FROM file";
 		ArrayList<FileDTO> list = new ArrayList<FileDTO>();
 		try {
 			conn = dataSource.getConnection(); 
@@ -86,7 +86,7 @@ public class FileDAO {
 	public int deleteFile(String fileName) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String SQL = "DELETE FROM FILE WHERE fileRealName = ?"; // fileName이 아니라, fileRealName으로 해주어야 정상작동 !
+		String SQL = "DELETE FROM file WHERE fileRealName = ?"; // fileName이 아니라, fileRealName으로 해주어야 정상작동 !
 		try {
 			conn = dataSource.getConnection(); 
 			pstmt = conn.prepareStatement(SQL);
