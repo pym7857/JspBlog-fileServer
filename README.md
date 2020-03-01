@@ -12,5 +12,9 @@
 * *Tomcat Server v8.5*
 
 ## ***Web Demo***
+![intro](./Imgs/intro.gif) 
+![index](./Imgs/index.gif) 
+![file](./Imgs/file.gif) 
+![msg](./Imgs/msg.gif) 
 
 
