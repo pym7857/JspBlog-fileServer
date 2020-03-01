@@ -12,13 +12,13 @@
 * *Tomcat Server v8.5*
 
 ## ***Web Demo***
-### ***1.intro***
+### ***1. intro***
 ![intro](./Imgs/intro.gif) 
-### ***2.index***
+### ***2. indexPage & BoardView***
 ![index](./Imgs/index.gif) 
-### ***3.fileShare***
+### ***3. fileDownload & Streaming***
 ![file](./Imgs/file.gif) 
-### ***4.msg***
+### ***4. msg***
 ![msg](./Imgs/msg.gif) 
 
 
