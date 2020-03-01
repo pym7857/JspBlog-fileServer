@@ -77,7 +77,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp"><i class="fa fa-home"></i> 조유리 사생팬</a>
+			<a class="navbar-brand" href="index.jsp"><i class="fa fa-home"></i> Y&lt;&gt;UNG ++</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -125,10 +125,10 @@
 		</div>
 	</nav>
 	<div class="container">
-		<table class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
+		<table style="margin:0 auto; text-align: center; border: 0;">
 			<thead>
 				<tr>
-					<th colspan="6"><h4>자유게시판 <i class="fa fa-pencil-alt"></i></h4></th>
+					<th style="width: 800px;" colspan="6"><h4>자유게시판 <i class="fa fa-pencil-alt"></i></h4></th>
 				</tr>
 				<tr>
 					<th style="font-weight: bold; background-color: #fafafa; color: #000000; width: 70px;"><h5>번호</h5></th> 
@@ -158,7 +158,7 @@
 				<!-- 페이지 처리 부분 -->
 				<tr>
 					<td colspan="6">
-						<a href="boardWrite.jsp" class="btn btn-primary pull-right" type="submit">글쓰기</a>
+						<a href="boardWrite.jsp" class="btn btn-warning pull-right" type="submit">글쓰기</a>
 						<ul class="pagination" style="margin: 0 auto;"> <!-- 부트스트랩 : 페이지네이션 <ul> 태그로 제공 -->
 					<%
 						int startPage = (Integer.parseInt(pageNumber) / 3) * 3 + 1; // ex.. 1,2,3페이지 까지는 startPage = 1, 4 페이지 부터는 startPage = 4
@@ -178,18 +178,19 @@
 						/* [현재 페이지] startPage부터 현재페이지 넘버 이전까지의 버튼 */
 						for(int i = startPage; i < Integer.parseInt(pageNumber); i++) {
 					%>
-							<li><a href="boardView.jsp?pageNumber=<%= i %>"><%= i %></a></li>
+							<li><a style="color: black; background-color: transparent;" href="boardView.jsp?pageNumber=<%= i %>"><%= i %></a></li>
 					<%
 						} /* [현재 페이지] 현재 페이지 넘버 버튼*/
 					%>
-						<li class="active"><a href="boardView.jsp?pageNumber=<%= pageNumber %>"><%= pageNumber %></a></li>
+						<li class="active"><a style="color: black; background-color: transparent;" href="boardView.jsp?pageNumber=<%= pageNumber %>"><%= pageNumber %></a></li>
 					<%
 						/* [현재 페이지] 현재 페이지 넘버 다음부터의 버튼 */
 						for(int i = Integer.parseInt(pageNumber) + 1; i < targetPage + Integer.parseInt(pageNumber); i++) {
 							/* startPage + 3 의 범위를 넘지않는 버튼에 한해서만 */
 							if(i < startPage + 3) { 
 					%>
-								<li><a href="boardView.jsp?pageNumber=<%= i %>"><%= i %></a></li>
+								<li><a style="color: black; background-color: transparent;" href="boardView.jsp?pageNumber=<%= i %>"><%= i %></a></li>
+								
 					<%
 							}
 						}
@@ -256,6 +257,19 @@
 	%>
 	<script>
 		$('#messageModal').modal("show");
+		$(document).ready(function() {
+			$('.dropdown,.dropdown-menu').hover(function(){
+		          if($(window).width()>=768){
+		            $(this).addClass('open').trigger('shown.bs.dropdown')
+		            return false;
+		          }
+		        },function(){
+		          if($(window).width()>=768){
+		            $(this).removeClass('open').trigger('hidden.bs.dropdown')
+		            return false;
+		          }
+		        })
+		});
 	</script>
 	<%
 		if(userID != null) {

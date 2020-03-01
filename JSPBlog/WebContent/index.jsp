@@ -26,10 +26,32 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/custom.css?after">
 	<link rel="stylesheet" type="text/css" href="css/custom2.css?ver=1">
+	<link href="css/animate.css" rel="stylesheet">
 	<title>OKKY</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="https://kit.fontawesome.com/4aa58836e4.js" crossorigin="anonymous"></script>
+	<style type="text/css">
+		.viewtag {
+			cursor: pointer;
+			transition: color 0.3s ease 0s, text-shadow 0.3s ease 0s;
+		}
+		.viewtag:hover {
+			color: black;
+			text-shadow: 2px 2px 8px #000000;
+		}
+	</style>
+	<script type="text/javascript">
+		$(function(){
+			  $('.media').hover(function(){
+				  $(this).addClass('animated pulse');
+			    	console.log('hover2!');
+				}, function() {
+					$(this).removeClass('animated pulse');
+					console.log('unhover2!');
+				});
+		  });
+	</script>
 	<script type="text/javascript">
 		/* 상단 내비게이션 메세지함 unread 라벨 표시 */
 		function getUnread() {
@@ -68,7 +90,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp"><i class="fa fa-home"></i> 조유리 사생팬</a>
+			<a class="navbar-brand" href="index.jsp"><i class="fa fa-home"></i> Y&lt;&gt;UNG ++</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -125,7 +147,7 @@
 					BoardDTO board = boardPopularList.get(i);
 			%>
 				<ul>
-					<li style="list-style:none; font-weight: bold;"><img src="images\star.png" style="width:20px; height:20px;"></img>&nbsp<a href="boardShow.jsp?boardID=<%= board.getBoardID() %>"><%= board.getBoardTitle() %></a></li>
+					<li style="list-style:none; font-weight: bold;"><img src="images\star.png" style="width:20px; height:20px;"></img>&nbsp<a class="viewtag" href="boardShow.jsp?boardID=<%= board.getBoardID() %>"><%= board.getBoardTitle() %></a></li>
 					<li style="list-style:none; margin-top:5px; font-size: 80%; color:grey;">작성자 <%= board.getUserID() %> | 조회  <%= board.getBoardHit() %> | 추천 <%= board.getBoardLike() %></li>
 					
 				</ul>
@@ -142,7 +164,7 @@
 					BoardDTO board = boardList.get(i);
 			%>
 				<ul>
-					<li style="list-style:none; font-weight: bold;"><img src="images\balloon.png" style="width:50px; height:30px;"></img>&nbsp<a href="boardShow.jsp?boardID=<%= board.getBoardID() %>"><%= board.getBoardTitle() %></a></li>
+					<li style="list-style:none; font-weight: bold;"><img src="images\balloon.png" style="width:50px; height:30px;"></img>&nbsp<a class="viewtag" href="boardShow.jsp?boardID=<%= board.getBoardID() %>"><%= board.getBoardTitle() %></a></li>
 					<li style="list-style:none; margin-top:5px; font-size: 80%; color:grey;">작성자 <%= board.getUserID() %> | 조회  <%= board.getBoardHit() %> | 추천 <%= board.getBoardLike() %></li>
 				</ul>
 				<hr style="margin-top:0px;">
@@ -156,41 +178,67 @@
         <div class="panel panel-primary">
             <div class="panel-heading" style="background-color: #6b7ae0;">
                 <h3 class="panel-title"><span class="glyphicon glyphicon-pencil"></span>
-                &nbsp;&nbsp;최신 강의 목록</h3>
+                &nbsp;&nbsp;<b>포트폴리오</b></h3>
             </div>
             <div class="panel-body">
                 <div class="media">
                     <div class="media-left">
-                        <a href="lecture.html?lectureName=C"><img class="media-object" src="images/C.png" style="width:120px; height: 120px;"></a>
+                        <a href="#"><img class="media-object" src="images/rasp.png" style="width:120px; height: 120px;"></a>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading"><a href="lecture.html?lectureName=C">C언어 기초 프로그래밍 강의</a>&nbsp;<span class="badge">New</span></h4>
-                        C언어 강의는 기초 프로그래밍 강의입니다. 처음 프로그래밍을 접하는 입문자가 듣기에 적합합니다.
-                        강의료는 무료이며 C언어 기초 프로그래밍 강의는 총 20강으로 구성됩니다. 
+                        <h4 class="media-heading"><a style="font-weight:bold;" href="#">라즈베리파이 AIOT 자율주행 차</a>&nbsp;<span class="badge">New</span></h4>
+                        	4학년 1학기 종합설계 프로젝트. Object Detection을 이용한 장애물&표지판 인식, Hough Line Transform을 이용한 차선 인식 및 자율주행 <br>
+                        	RC car에 직접 모터드라이버를 적용해 자율주행 차 제작. <br>
+                        	(3월 30일 완성 예정 ..)
                     </div>
                 </div>
                 <hr>
                 <div class="media">
                     <div class="media-left">
-                        <a href="lecture.html?lectureName=Java"><img class="media-object" src="images/java.jpg" style="width:120px; height: 120px;"></a>
+                        <a href="#"><img class="media-object" src="images/sh.png" style="width:120px; height: 120px;"></a>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading"><a href="lecture.html?lectureName=Java">JAVA언어 기초 프로그래밍 강의</a>&nbsp;<span class="badge">New</span></h4>
-                        JAVA언어 강의는 기초 프로그래밍 강의입니다. 처음 프로그래밍을 접하는 입문자가 듣기에 적합합니다.
-                        강의료는 무료이며 JAVA언어 기초 프로그래밍 강의는 총 20강으로 구성됩니다. 
+                        <h4 class="media-heading"><a style="font-weight:bold;" href="#">Price Change Prediction</a>&nbsp;<span class="badge">New</span></h4>
+                        	3학년2학기 종합설계 프로젝트. 웹 크롤링을 통해 KAMIS에서 농산물 유통가격정보와 날짜 등을 얻어오고, 기상청 사이트에서 20개년 날짜정보를 크롤링.<br>
+                        	이후 Pearson Correlation을 이용해 변인들간의 가중치 분석 후 실제 사용변인 결정. <br>
+                        	이를 토대로 tensorflow API를 이용해 가격의 다변인 선형회귀 적용&예측. 또한 LSTM을 이용해 수개월 후의 가격까지 예측. <br>
+                        	Python Flask, ASW EC2를 이용하여 최종적으로 호스팅 구축 완료.
                     </div>
                 </div>
                 <hr>
                 <div class="media">
                     <div class="media-left">
-                        <a href="lecture.html?lectureName=Android"><img class="media-object" src="images/android.png" style="width:120px; height: 120px;"></a>
+                        <a href="#"><img class="media-object" src="images/jsp.png" style="width:120px; height: 120px;"></a>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading"><a href="lecture.html?lectureName=Android">안드로이드 기초 프로그래밍 강의</a>&nbsp;<span class="badge">New</span></h4>
-                        안드로이드 강의는 기초 프로그래밍 강의입니다. 처음 프로그래밍을 접하는 입문자가 듣기에 적합합니다.
-                        강의료는 무료이며 안드로이드 기초 프로그래밍 강의는 총 20강으로 구성됩니다. 
+                        <h4 class="media-heading"><a style="font-weight:bold;" href="#">JSP Ajax를 이용한 커뮤니티 & 파일공유 사이트</a>&nbsp;<span class="badge">New</span></h4>
+							JSP Ajax를 이용해 실시간 채팅서비스 & 자유게시판 커뮤니티 제작. 자유게시판 커뮤니티 게시글의 페이지 네이션, 좋아요, 댓글 구현 <br>
+							MultiPartRequest를 이용해 파일 다운로드 & 업로드 구현. Html5 video.js를 이용해 웹 스트리밍 구현. <br>
+							Javascript 코드를 통해, 파일 공유 페이지 context menu구현 & 검색 필터링 구현. <br>
+							cafe24.com를 통해 최종 호스팅 구축 완료.
                     </div>
                 </div>
+                <hr>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#"><img class="media-object" src="images/jsImage.jpg" style="width:120px; height: 120px;"></a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a style="font-weight:bold;" href="#">VanillaJS를 이용한 웹 게임</a>&nbsp;<span class="badge">New</span></h4>
+                        	2048게임, 테트리스 등을 직접 만들어보며 JS전반에 걸친 여러 중요 개념들을 효율적으로 학습.
+                    </div>
+                </div>
+                <hr>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#"><img class="media-object" src="images/pythonImage.png" style="width:120px; height: 120px;"></a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a style="font-weight:bold;" href="#">파이썬 웹 크롤링을 이용한 indeed 자동화</a>&nbsp;<span class="badge">New</span></h4>
+                        	Beautiful Soup를 이용해, 직접 채용공고 사이트에 들어가지 않고도 여러 디테일한 구인 정보를 엑셀형태로 정렬하여 추출. 
+                    </div>
+                </div>
+                <hr>
             </div>
         </div>
 	</div>
@@ -240,6 +288,19 @@
 	%>
 	<script>
 		$('#messageModal').modal("show");
+		$(document).ready(function() {
+			$('.dropdown,.dropdown-menu').hover(function(){
+		          if($(window).width()>=768){
+		            $(this).addClass('open').trigger('shown.bs.dropdown')
+		            return false;
+		          }
+		        },function(){
+		          if($(window).width()>=768){
+		            $(this).removeClass('open').trigger('hidden.bs.dropdown')
+		            return false;
+		          }
+		        })
+		});
 	</script>
 	<%
 		if(userID != null) {

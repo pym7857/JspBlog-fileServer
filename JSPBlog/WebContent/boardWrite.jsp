@@ -27,6 +27,7 @@
 	<link rel="stylesheet" type="text/css" href="css/custom2.css">
 	<title>OKKY</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://kit.fontawesome.com/4aa58836e4.js" crossorigin="anonymous"></script>
 	<script src="js/bootstrap.js"></script>
 	<script type="text/javascript">
 		/* 상단 내비게이션 메세지함 unread 라벨 표시 */
@@ -76,7 +77,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp">조유리 사생팬 블로그</a>
+			<a class="navbar-brand" href="index.jsp"><i class="fa fa-home"></i> Y&lt;&gt;UNG ++</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -195,6 +196,19 @@
 	%>
 	<script>
 		$('#messageModal').modal("show");
+		$(document).ready(function() {
+			$('.dropdown,.dropdown-menu').hover(function(){
+		          if($(window).width()>=768){
+		            $(this).addClass('open').trigger('shown.bs.dropdown')
+		            return false;
+		          }
+		        },function(){
+		          if($(window).width()>=768){
+		            $(this).removeClass('open').trigger('hidden.bs.dropdown')
+		            return false;
+		          }
+		        })
+		});
 	</script>
 	<%
 		if(userID != null) {

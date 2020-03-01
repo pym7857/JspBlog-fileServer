@@ -16,12 +16,12 @@ a:hover{
 }
 
 /* 네비게이션 영역 */
-.navbar-default{    
-    background-color: #2b2b37;
-    border-color: #2b2b37;
+.navbar-default{    /* 배경 색상 */
+    background-color: #3ea7f0;
+    /*border-color: #2b2b37;*/
 }
-.navbar-default .navbar-brand{ /* 내비게이션 제목 생상 */
-    color: #FE9A2E;
+.navbar-default .navbar-brand{ /* 내비게이션 제목 */
+    color: #ffffff;  
     padding-top: 24px;
     font-family: 'yg-jalnan';
     font-size: 1.5em;
@@ -29,13 +29,13 @@ a:hover{
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus{ /*내비게이션 제목에 마우스를 올렸을 때 */
     background-color: transparent;
-    color: #ffffff; 
+    color: #FE9A2E;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus{/* 현재 선택된 내비게이션 색상 이벤트 */
     color: #FE9A2E;
-    background-color: #000000;
+    background-color: transparent;
 }
 .navbar-default .navbar-nav > li > a { /*내비게이션 기본 글자 색상 */
 	color: #ffffff;
@@ -49,19 +49,19 @@ a:hover{
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus{ /* .open : 드랍다운이 열렸을 때 마우스 색상 이벤트  */
     color: #FE9A2E;
-    background-color: #000000;
+    background-color: transparent;
     text-decoration: none;
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus { /* 토글에 마우스를 올렸을 때 */
-	background-color: #dddddd;
+	background-color: transparent;
 }
 .navbar-default .navbar-toggle: .icon-bar { /* 토글 아이콘 바 색상 */
-	background-color: #dddddd;
+	background-color: transparent;
 }
 
 /* 미디어 쿼리 */
-@media (max-width: 767px) { /* 화면 너비 767 이하일때 적용 */
+@media (max-width: 767px) { /* 화면 너비 767 이하일때 적용 (모바일 화면) */
     .navbar-default .navbar-nav .open .dropdown-menu > li > a {
         color: #ffffff;
     }
@@ -79,7 +79,9 @@ a:hover{
 	padding-bottom: 0px;
 	line-height: 70px;
 }
-@media (max-width: 767px) { /* 화면 너비 767 이하일때 적용 */
+
+/* 미디어 쿼리 */
+@media (max-width: 767px) { /* 화면 너비 767 이하일때 적용 (모바일 화면) */
 	.navbar-default .navbar-brand {
 		padding-top: 20px;
 	}
@@ -90,4 +92,28 @@ a:hover{
 	}
 }
 
+/* navbar양 사이드 길이를 container와 동일하게.. */
+.navbar-fixed-top {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
 
+@media (min-width: 768px) {
+  .navbar-fixed-top {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-fixed-top {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .navbar-fixed-top {
+    width: 1170px;
+  }
+}

@@ -103,7 +103,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp"><i class="fa fa-home"></i> 조유리 사생팬</a>
+			<a class="navbar-brand" href="index.jsp"><i class="fa fa-home"></i> Y&lt;&gt;UNG ++</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -151,10 +151,10 @@
 		</div>
 	</nav>
 	<div class="container">
-		<table class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
+		<table style="margin: 0 auto; text-align: center; border: 0;">
 			<thead>
 				<tr>
-					<th colspan="4"><h4>게시물 보기</h4></th>
+					<th colspan="4" style="width: 800px;"><h4>게시물 보기</h4></th>
 				</tr>
 				<tr>
 					<td style="background-color: #fafafa; color: #000000; width: 80px;"><h5>제목</h5></td>
@@ -193,12 +193,12 @@
 				}
 			%>
 					<td colspan="5" style="text-align: right;">
-						<a href="boardView.jsp" class="btn btn-primary">목록</a>
+						<a href="boardView.jsp" class="btn btn-info">목록</a>
 						<%
 							if(userID != null && userID.equals(board.getUserID())) { // 작성자 본인만 볼 수 있는 버튼들 
 						%>
-							<a href="boardUpdate.jsp?boardID=<%= board.getBoardID() %>" class="btn btn-primary">수정</a>
-							<a href="boardDelete?boardID=<%= board.getBoardID() %>" class="btn btn-primary" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
+							<a href="boardUpdate.jsp?boardID=<%= board.getBoardID() %>" class="btn btn-info">수정</a>
+							<a href="boardDelete?boardID=<%= board.getBoardID() %>" class="btn btn-info" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
 						<%
 							}
 						%>
@@ -206,9 +206,9 @@
 				</tr>
 			</tbody>
 		</table>
-		
+		<br>
 		<!-- 댓글  -->
-		<div class="row">
+		<div class="row" style="width: 800px; margin: 0 auto;">
 		<%
 			for(int i=0; i<commentList.size(); i++) {
 				CommentDTO comment = commentList.get(i);
@@ -222,12 +222,13 @@
 		<%
 				if(userID != null && userID.equals(comment.getUserID())) { // 댓글 작성자 본인에 한해서만 보여지도록 
 		%>
-				<a href="boardCommentDelete?commentID=<%= comment.getCommentID() %>" class="btn btn-primary pull-right" onclick="return confirm('정말로 삭제하시겠습니까?')">댓글 삭제</a>
+				<a href="boardCommentDelete?commentID=<%= comment.getCommentID() %>" class="btn btn-info pull-right" onclick="return confirm('정말로 삭제하시겠습니까?')">댓글 삭제</a>
+				<hr>
 		<%
 				} 
 		%>
 			</ul>
-			<hr>
+			
 		<%
 			}
 		%>
@@ -237,7 +238,7 @@
 		%>
 			<!-- 댓글 입력창 -->
 			<form method="post" action="./boardCommentWrite?boardID=<%= board.getBoardID() %>">
-				<div class="row">
+				<div class="row" style="width: 800px; margin: 0 auto;">
 					<input class="form-control" maxlength="100" name="content" style="height:80px;" placeholder="댓글을 입력해주세요.">
 					<input class="btn btn-primary pull-right" type="submit" value="댓글쓰기" style="margin-top:10px; font-weight:bold; font-size:120%; height:40px; width:180px; border:1px solid red; background-color:red;">	
 				</div>
@@ -297,6 +298,19 @@
 	%>
 	<script>
 		$('#messageModal').modal("show");
+		$(document).ready(function() {
+			$('.dropdown,.dropdown-menu').hover(function(){
+		          if($(window).width()>=768){
+		            $(this).addClass('open').trigger('shown.bs.dropdown')
+		            return false;
+		          }
+		        },function(){
+		          if($(window).width()>=768){
+		            $(this).removeClass('open').trigger('hidden.bs.dropdown')
+		            return false;
+		          }
+		        })
+		});
 	</script>
 	<%
 		if(userID != null) {

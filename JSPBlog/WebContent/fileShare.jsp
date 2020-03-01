@@ -198,7 +198,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp"><i class="fa fa-home"></i> 조유리 사생팬</a>
+			<a class="navbar-brand" href="index.jsp"><i class="fa fa-home"></i> Y&lt;&gt;UNG ++</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -249,7 +249,7 @@
 	<!-- 파일 토렌트 -->
 	<form action="./uploadAction" method="post" enctype="multipart/form-data">
 		<div class="container">
-			<table class="table table-bordered table-hover" style="text-align: center; margin-bottom: 10px; border: 1px solid black;">
+			<table style="margin: 0 auto; text-align: center; margin-bottom: 10px; border: 0;">
 				<thead>
 				</thead>
 				<tbody>
@@ -268,7 +268,7 @@
 					<td style="font-weight:bold; width: 110px; vertical-align: middle;">용량</td>
 					<td style="font-weight:bold; width: 110px; vertical-align: middle;"><span id="fileVolume"></span></td>
 					<td style="font-weight:bold; width: 110px; vertical-align: middle;">
-						<input type="submit" name="file" value="업로드" class="btn btn-success btn-xs" style="font-weight:bold; width:100px; height:40px;" 
+						<input type="submit" name="file" value="업로드" class="btn btn-success btn-xs" style="font-weight:bold; width:80px; height:30px;" 
 						data-toggle="tooltip" data-placement="top" title="파일을 업로드 합니다.">
 					</td>
 				</tr>
@@ -280,7 +280,7 @@
 	
 	<!-- 파일 목록 -->
 	<div class="container">
-		<table id="main-table" class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
+		<table id="main-table" style="margin:0 auto; text-align: center; border: 0;">
 			<thead>
 				<tr>
 					<th style="width: 70px;"><h5>유형</h5></th> 
@@ -364,6 +364,19 @@
 	%>
 	<script>
 		$('#messageModal').modal("show");
+		$(document).ready(function() {
+			$('.dropdown,.dropdown-menu').hover(function(){
+		          if($(window).width()>=768){
+		            $(this).addClass('open').trigger('shown.bs.dropdown')
+		            return false;
+		          }
+		        },function(){
+		          if($(window).width()>=768){
+		            $(this).removeClass('open').trigger('hidden.bs.dropdown')
+		            return false;
+		          }
+		        })
+		});
 	</script>
 	
 	<!-- checkModal -->

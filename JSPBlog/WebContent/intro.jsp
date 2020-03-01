@@ -15,6 +15,7 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
   <link href="css/freelancer.min.css" type="text/css" rel="stylesheet">
+  <link href="css/animate.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://kit.fontawesome.com/4aa58836e4.js" crossorigin="anonymous"></script>
   <style type="text/css">
@@ -47,7 +48,17 @@
 		height: 10px;
 	}
   </style>
-  
+  <script type="text/javascript">
+	  $(function(){
+		  $('#introduce').hover(function(){
+			  $(this).addClass('animated rubberBand'); // animate.css
+		    	console.log('hover!');
+			}, function() {
+				$(this).removeClass('animated rubberBand');
+				console.log('unhover!');
+			});
+	  });
+  </script>
   <script type="text/javascript">
 	  var FnObj = {
 				bodyScrollEvt: function(evt) {
@@ -75,7 +86,6 @@
 	  }
   </script>
   
-
 </head>
 
 <body id="page-top" onscroll="FnObj.bodyScrollEvt(this);">
@@ -83,7 +93,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">조유리 사생팬 블로그 <i class="fa fa-palette"></i></a>
+      <a class="navbar-brand js-scroll-trigger" href="#page-top"> Y&lt;&gt;UNG ++ <i class="fa fa-palette"></i></a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -115,7 +125,7 @@
       <img class="masthead-avatar mb-5" src="img/avataaars.svg" alt="">
 
       <!-- Masthead Heading -->
-      <h1 class="masthead-heading text-uppercase mb-0">Hello! I'm 조유리사생팬</h1>
+      <h1 id="introduce" class="masthead-heading text-uppercase mb-0">Hello! I'm YoungMin Park</h1>
 
       <!-- Icon Divider -->
       <div class="divider-custom divider-light">
@@ -135,7 +145,7 @@
   <!-- About Section -->
   <section class="page-section bg-primary text-white mb-0" id="about">
     <div class="container">
-
+    
       <!-- About Section Heading -->
       <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
 
