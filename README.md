@@ -5,7 +5,6 @@
 
 ## ***Development environment***
 * *OS : Windosw 10*
-* *IDE : JavaEE*
 * *Language : Java*
 * *MySQL ver8.0.18*
 * *BootStrap 3.3.7*
