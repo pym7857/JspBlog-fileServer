@@ -10,7 +10,7 @@
 * *BootStrap 3.3.7*
 * *Tomcat Server v8.5*
 
-## ***Web Demo***
+## ***Contents***
 ### ***1. intro***
 ![intro](./Imgs/intro.gif) 
 ### ***2. indexPage & BoardView***
